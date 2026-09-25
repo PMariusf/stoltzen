@@ -1,13 +1,15 @@
 import { event } from "@/data/event";
+import type { Locale } from "@/lib/i18n";
 
-const stats = [
-  { value: String(event.stats.steps), label: "Trinn" },
-  { value: `${event.stats.elevation} M`, label: "Høydemeter" },
-  { value: event.stats.distance.toUpperCase(), label: "Løype" },
-  { value: String(event.stats.since), label: "Siden" },
-];
+export default function StatsStrip({ locale = "no" }: { locale?: Locale }) {
+  const en = locale === "en";
+  const stats = [
+    { value: String(event.stats.steps), label: en ? "Steps" : "Trinn" },
+    { value: `${event.stats.elevation} M`, label: en ? "Vertical metres" : "Høydemeter" },
+    { value: event.stats.distance.toUpperCase(), label: en ? "Course" : "Løype" },
+    { value: String(event.stats.since), label: en ? "Since" : "Siden" },
+  ];
 
-export default function StatsStrip() {
   return (
     <section className="border-y border-white/10 bg-[#080808] text-white">
       <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">

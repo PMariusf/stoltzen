@@ -3,6 +3,7 @@ export const event = {
   location: "Bergen",
   year: 2026,
   dateLabel: "25.–26. september 2026",
+  dateLabelEn: "25–26 September 2026",
   registrationOpen: "2026-05-28T07:00:00+02:00",
   eventStart: "2026-09-25T00:00:00+02:00",
   eventEnd: "2026-09-26T23:59:59+02:00",

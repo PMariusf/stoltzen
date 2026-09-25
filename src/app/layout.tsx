@@ -14,6 +14,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const themeScript = `
+(function () {
+  try {
+    var saved = localStorage.getItem("stoltzen-theme");
+    var theme = saved === "light" || saved === "dark"
+      ? saved
+      : (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.dataset.theme = theme;
+  } catch (e) {
+    document.documentElement.dataset.theme = "dark";
+  }
+})();
+`;
+
 export const metadata: Metadata = {
   title: {
     default: "Stoltzekleiven Opp",
@@ -25,8 +39,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="no" className={`${geistSans.variable} ${geistMono.variable} bg-[#050505] antialiased`}>
-      <body className="min-h-screen bg-[#050505] font-sans">
+    <html
+      lang="nb"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-screen bg-background text-foreground font-sans">
         <Navbar />
         {children}
         <Footer />

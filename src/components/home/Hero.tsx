@@ -3,9 +3,19 @@ import Link from "next/link";
 import { event } from "@/data/event";
 import type { EventPhase } from "@/lib/event-phase";
 import { getPhaseContent } from "@/lib/event-phase";
+import type { Locale } from "@/lib/i18n";
 
-export default function Hero({ phase }: { phase: EventPhase }) {
-  const content = getPhaseContent(phase);
+export default function Hero({
+  phase,
+  locale = "no",
+}: {
+  phase: EventPhase;
+  locale?: Locale;
+}) {
+  const en = locale === "en";
+  const content = getPhaseContent(phase, locale);
+  const latestResults = en ? "/en/results/2026" : event.links.latestResults;
+  const gallery = en ? "/en/photos" : event.links.gallery;
 
   return (
     <section className="relative overflow-hidden bg-black text-white">
@@ -13,7 +23,11 @@ export default function Hero({ phase }: { phase: EventPhase }) {
         <div className="relative mx-auto w-full max-w-[2172px]">
           <Image
             src="/images/hero/Stoltzen-hero.png"
-            alt="Stoltzekleiven Opp med Varegg-logo, løpere, rekordtider og jubileumsgrafikk"
+            alt={
+              en
+                ? "Stoltzekleiven Opp with Varegg logo, runners, course records and anniversary graphics"
+                : "Stoltzekleiven Opp med Varegg-logo, løpere, rekordtider og jubileumsgrafikk"
+            }
             width={2172}
             height={724}
             priority
@@ -30,9 +44,7 @@ export default function Hero({ phase }: { phase: EventPhase }) {
               <div className="inline-flex items-center gap-3 border border-white/15 bg-white/[0.03] px-4 py-2">
                 <span
                   className={`h-2 w-2 rounded-full ${
-                    phase === "live"
-                      ? "animate-pulse bg-white"
-                      : "bg-white/45"
+                    phase === "live" ? "animate-pulse bg-white" : "bg-white/45"
                   }`}
                 />
                 <span className="text-xs font-black uppercase tracking-[0.22em] text-white/75">
@@ -41,11 +53,13 @@ export default function Hero({ phase }: { phase: EventPhase }) {
               </div>
 
               <p className="mt-5 text-xs font-bold uppercase tracking-[0.3em] text-white/45 sm:text-sm">
-                {event.location} · {event.dateLabel}
+                {event.location} · {en ? event.dateLabelEn : event.dateLabel}
               </p>
 
               <h1 className="mt-3 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl md:text-5xl">
-                801 trinn. 315 høydemeter. Én vei opp.
+                {en
+                  ? "801 steps. 315 vertical metres. One way up."
+                  : "801 trinn. 315 høydemeter. Én vei opp."}
               </h1>
 
               <p className="mt-3 text-sm font-medium text-white/50">
@@ -62,63 +76,45 @@ export default function Hero({ phase }: { phase: EventPhase }) {
               </Link>
 
               <Link
-                href={event.links.latestResults}
+                href={latestResults}
                 className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60 hover:bg-white hover:text-black"
               >
-                Resultater {event.year}
+                {en ? "Results" : "Resultater"} {event.year}
               </Link>
 
               <Link
-                href={event.links.gallery}
+                href={gallery}
                 className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60"
               >
-                Se bilder
+                {en ? "See photos" : "Se bilder"}
               </Link>
             </div>
           </div>
 
           <div className="mt-8 grid gap-3 border-t border-white/10 pt-6 sm:grid-cols-2">
-            <div className="border border-white/10 bg-white/[0.025] px-5 py-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">
-                Løyperekord · menn
-              </p>
-
-              <div className="mt-2 flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-sm font-bold text-white/80">
-                    {event.records.men.name}
-                  </p>
-                  <p className="mt-1 text-xs text-white/35">
-                    {event.records.men.year}
-                  </p>
-                </div>
-
-                <p className="text-3xl font-black tracking-[-0.06em]">
-                  {event.records.men.time}
+            {[
+              {
+                label: en ? "Course record · men" : "Løyperekord · menn",
+                record: event.records.men,
+              },
+              {
+                label: en ? "Course record · women" : "Løyperekord · kvinner",
+                record: event.records.women,
+              },
+            ].map(({ label, record }) => (
+              <div key={label} className="border border-white/10 bg-white/[0.025] px-5 py-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">
+                  {label}
                 </p>
-              </div>
-            </div>
-
-            <div className="border border-white/10 bg-white/[0.025] px-5 py-4">
-              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">
-                Løyperekord · kvinner
-              </p>
-
-              <div className="mt-2 flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-sm font-bold text-white/80">
-                    {event.records.women.name}
-                  </p>
-                  <p className="mt-1 text-xs text-white/35">
-                    {event.records.women.year}
-                  </p>
+                <div className="mt-2 flex items-end justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-bold text-white/80">{record.name}</p>
+                    <p className="mt-1 text-xs text-white/35">{record.year}</p>
+                  </div>
+                  <p className="text-3xl font-black tracking-[-0.06em]">{record.time}</p>
                 </div>
-
-                <p className="text-3xl font-black tracking-[-0.06em]">
-                  {event.records.women.time}
-                </p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,8 +1,36 @@
 @import "tailwindcss";
 
-:root {
+:root,
+html[data-theme="dark"] {
+  color-scheme: dark;
   --background: #080808;
   --foreground: #f5f5f2;
+  --nav-bg: rgba(0, 0, 0, 0.56);
+  --nav-fg: #ffffff;
+  --nav-muted: rgba(255, 255, 255, 0.72);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --menu-bg: #0a0a0a;
+  --footer-bg: #050505;
+  --footer-fg: #ffffff;
+  --footer-muted: rgba(255, 255, 255, 0.55);
+  --footer-heading: rgba(255, 255, 255, 0.4);
+  --footer-link: rgba(255, 255, 255, 0.7);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --background: #f4f3ee;
+  --foreground: #111111;
+  --nav-bg: rgba(248, 247, 242, 0.92);
+  --nav-fg: #111111;
+  --nav-muted: rgba(17, 17, 17, 0.65);
+  --nav-border: rgba(17, 17, 17, 0.12);
+  --menu-bg: #f8f7f2;
+  --footer-bg: #ecebe6;
+  --footer-fg: #111111;
+  --footer-muted: rgba(17, 17, 17, 0.58);
+  --footer-heading: rgba(17, 17, 17, 0.45);
+  --footer-link: rgba(17, 17, 17, 0.7);
 }
 
 @theme inline {
@@ -25,6 +53,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 a {
@@ -32,8 +61,118 @@ a {
 }
 
 ::selection {
-  background: #f5f5f2;
-  color: #080808;
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.site-nav {
+  background: var(--nav-bg);
+  color: var(--nav-fg);
+  border-color: var(--nav-border);
+}
+
+.nav-link {
+  color: var(--nav-muted);
+}
+
+.nav-link:hover {
+  color: var(--nav-fg);
+}
+
+.nav-control,
+.nav-menu-button {
+  border-color: var(--nav-border);
+  color: var(--nav-fg);
+  background: color-mix(in srgb, var(--nav-fg) 5%, transparent);
+}
+
+.nav-control {
+  display: inline-flex;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+.nav-cta {
+  background: var(--nav-fg);
+  color: var(--nav-bg);
+}
+
+html[data-theme="light"] .nav-cta {
+  background: #111111;
+  color: #ffffff;
+}
+
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--nav-border);
+  color: var(--nav-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.language-switch a {
+  transition: color 150ms ease;
+}
+
+.language-switch a:hover,
+.language-switch .is-active {
+  color: var(--nav-fg);
+}
+
+.site-menu {
+  background: var(--menu-bg);
+  color: var(--nav-fg);
+  border-color: var(--nav-border);
+}
+
+.mobile-nav-link {
+  color: var(--nav-muted);
+  border-color: var(--nav-border);
+}
+
+.mobile-nav-link:hover {
+  color: var(--nav-fg);
+  background: color-mix(in srgb, var(--nav-fg) 5%, transparent);
+}
+
+.site-menu > nav > div {
+  border-color: var(--nav-border);
+}
+
+.site-footer {
+  background: var(--footer-bg);
+  color: var(--footer-fg);
+  border-color: var(--nav-border);
+}
+
+.footer-muted {
+  color: var(--footer-muted);
+}
+
+.footer-heading {
+  color: var(--footer-heading);
+}
+
+.footer-links {
+  color: var(--footer-link);
+}
+
+.footer-links a:hover {
+  color: var(--footer-fg);
+}
+
+.footer-bottom {
+  color: var(--footer-heading);
+  border-color: var(--nav-border);
 }
 
 .hero-surface {
@@ -101,6 +240,105 @@ a {
 .text-link:hover {
   gap: 1rem;
   color: white;
+}
+
+/* Existing dark Stoltzen sections become light without changing the hero artwork. */
+html[data-theme="light"] :is(
+  .bg-\[\#050505\],
+  .bg-\[\#070707\],
+  .bg-\[\#080808\],
+  .bg-\[\#090909\],
+  .bg-\[\#0b0b0b\],
+  .bg-\[\#101010\],
+  .bg-\[\#111\],
+  .bg-\[\#141414\],
+  .bg-\[\#151515\]
+) {
+  background-color: #f4f3ee !important;
+  color: #111111 !important;
+}
+
+html[data-theme="light"] :is(
+  .bg-\[\#050505\],
+  .bg-\[\#070707\],
+  .bg-\[\#080808\],
+  .bg-\[\#090909\],
+  .bg-\[\#0b0b0b\],
+  .bg-\[\#101010\],
+  .bg-\[\#111\],
+  .bg-\[\#141414\],
+  .bg-\[\#151515\]
+) .text-white {
+  color: #111111 !important;
+}
+
+html[data-theme="light"] :is(
+  .bg-\[\#050505\],
+  .bg-\[\#070707\],
+  .bg-\[\#080808\],
+  .bg-\[\#090909\],
+  .bg-\[\#0b0b0b\],
+  .bg-\[\#101010\],
+  .bg-\[\#111\],
+  .bg-\[\#141414\],
+  .bg-\[\#151515\]
+) [class*="text-white/"] {
+  color: rgba(17, 17, 17, 0.58) !important;
+}
+
+html[data-theme="light"] :is(
+  .bg-\[\#050505\],
+  .bg-\[\#070707\],
+  .bg-\[\#080808\],
+  .bg-\[\#090909\],
+  .bg-\[\#0b0b0b\],
+  .bg-\[\#101010\],
+  .bg-\[\#111\],
+  .bg-\[\#141414\],
+  .bg-\[\#151515\]
+) [class*="border-white/"] {
+  border-color: rgba(17, 17, 17, 0.14) !important;
+}
+
+html[data-theme="light"] :is(
+  .bg-\[\#050505\],
+  .bg-\[\#070707\],
+  .bg-\[\#080808\],
+  .bg-\[\#090909\],
+  .bg-\[\#0b0b0b\],
+  .bg-\[\#101010\],
+  .bg-\[\#111\],
+  .bg-\[\#141414\],
+  .bg-\[\#151515\]
+) [class*="bg-white/"] {
+  background-color: rgba(17, 17, 17, 0.035) !important;
+}
+
+html[data-theme="light"] :is(
+  .bg-\[\#050505\],
+  .bg-\[\#070707\],
+  .bg-\[\#080808\],
+  .bg-\[\#090909\],
+  .bg-\[\#0b0b0b\],
+  .bg-\[\#101010\],
+  .bg-\[\#111\],
+  .bg-\[\#141414\],
+  .bg-\[\#151515\]
+) .bg-white {
+  background-color: #111111 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .section-kicker {
+  color: rgba(17, 17, 17, 0.44);
+}
+
+html[data-theme="light"] .text-link {
+  color: rgba(17, 17, 17, 0.72);
+}
+
+html[data-theme="light"] .text-link:hover {
+  color: #111111;
 }
 
 @media (prefers-reduced-motion: reduce) {

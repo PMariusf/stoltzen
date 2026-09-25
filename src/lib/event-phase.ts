@@ -1,4 +1,5 @@
 import { event } from "@/data/event";
+import type { Locale } from "@/lib/i18n";
 
 export type EventPhase =
   | "before-registration"
@@ -26,49 +27,74 @@ export function getEventPhase(now = new Date()): EventPhase {
   return "registration";
 }
 
-export function getPhaseContent(phase: EventPhase) {
+export function getPhaseContent(phase: EventPhase, locale: Locale = "no") {
+  const en = locale === "en";
+  const links = en
+    ? {
+        registration: "/en/registration",
+        results: "/en/results",
+        latestResults: "/en/results/2026",
+        practical: "/en/practical-info",
+      }
+    : {
+        registration: event.links.registration,
+        results: event.links.startAndResults,
+        latestResults: event.links.latestResults,
+        practical: event.links.practicalInfo,
+      };
+
   switch (phase) {
     case "before-registration":
       return {
-        eyebrow: "Neste steg",
-        primaryLabel: "Se påmeldingsinfo",
-        primaryHref: event.links.registration,
-        status: "Påmeldingen åpner 28. mai kl. 07:00",
+        eyebrow: en ? "Next up" : "Neste steg",
+        primaryLabel: en ? "Registration info" : "Se påmeldingsinfo",
+        primaryHref: links.registration,
+        status: en
+          ? "Registration opens 28 May at 07:00"
+          : "Påmeldingen åpner 28. mai kl. 07:00",
       };
     case "registration":
       return {
-        eyebrow: "Påmeldingen er åpen",
-        primaryLabel: "Meld deg på",
-        primaryHref: event.links.registration,
-        status: "Sikre deg startplass",
+        eyebrow: en ? "Registration is open" : "Påmeldingen er åpen",
+        primaryLabel: en ? "Register" : "Meld deg på",
+        primaryHref: links.registration,
+        status: en ? "Secure your place" : "Sikre deg startplass",
       };
     case "sold-out":
       return {
-        eyebrow: "Fulltegnet",
-        primaryLabel: "Venteliste & restplasser",
-        primaryHref: event.links.registration,
-        status: "Se informasjon om venteliste",
+        eyebrow: en ? "Sold out" : "Fulltegnet",
+        primaryLabel: en ? "Waiting list & places" : "Venteliste & restplasser",
+        primaryHref: links.registration,
+        status: en
+          ? "See waiting-list information"
+          : "Se informasjon om venteliste",
       };
     case "race-week":
       return {
-        eyebrow: "Løpsuke",
-        primaryLabel: "Start & praktisk info",
-        primaryHref: event.links.practicalInfo,
-        status: "Finn startnummer og gjør deg klar",
+        eyebrow: en ? "Race week" : "Løpsuke",
+        primaryLabel: en ? "Start & practical info" : "Start & praktisk info",
+        primaryHref: links.practical,
+        status: en
+          ? "Find your start number and get ready"
+          : "Finn startnummer og gjør deg klar",
       };
     case "live":
       return {
-        eyebrow: "LIVE i Bergen",
-        primaryLabel: "Start & resultater",
-        primaryHref: event.links.startAndResults,
-        status: "Stoltzekleiven Opp pågår nå",
+        eyebrow: en ? "LIVE in Bergen" : "LIVE i Bergen",
+        primaryLabel: en ? "Start & results" : "Start & resultater",
+        primaryHref: links.results,
+        status: en
+          ? "Stoltzekleiven Opp is happening now"
+          : "Stoltzekleiven Opp pågår nå",
       };
     case "finished":
       return {
-        eyebrow: `${event.year} er gjennomført`,
-        primaryLabel: `Resultater ${event.year}`,
-        primaryHref: event.links.latestResults,
-        status: `Neste: Stoltzekleiven Opp ${event.nextEvent.year}`,
+        eyebrow: en ? `${event.year} completed` : `${event.year} er gjennomført`,
+        primaryLabel: en ? `Results ${event.year}` : `Resultater ${event.year}`,
+        primaryHref: links.latestResults,
+        status: en
+          ? `Next: Stoltzekleiven Opp ${event.nextEvent.year}`
+          : `Neste: Stoltzekleiven Opp ${event.nextEvent.year}`,
       };
   }
 }
