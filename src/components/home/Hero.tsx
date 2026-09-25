@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { event } from "@/data/event";
 import type { EventPhase } from "@/lib/event-phase";
@@ -7,54 +8,66 @@ export default function Hero({ phase }: { phase: EventPhase }) {
   const content = getPhaseContent(phase);
 
   return (
-    <section className="hero-surface relative min-h-[92svh] overflow-hidden bg-[#080808] text-white">
-      <div className="hero-grid absolute inset-0 opacity-40" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_36%,rgba(255,255,255,0.14),transparent_24%),linear-gradient(to_top,rgba(0,0,0,0.96),rgba(0,0,0,0.15)_55%,rgba(0,0,0,0.42))]" />
-      <div className="pointer-events-none absolute -right-8 top-[18%] hidden select-none text-[20vw] font-black leading-none tracking-[-0.09em] text-white/[0.035] lg:block">
-        801
+    <section className="relative overflow-hidden bg-black text-white">
+      <div className="pt-20">
+        <div className="relative mx-auto w-full max-w-[2172px]">
+          <Image
+            src="/images/hero/stoltzen-hero.webp"
+            alt="Stoltzekleiven Opp med Varegg-logo, løpere, rekordtider og jubileumsgrafikk"
+            width={2172}
+            height={724}
+            priority
+            sizes="100vw"
+            className="h-auto w-full object-contain"
+          />
+        </div>
       </div>
 
-      <div className="relative mx-auto flex min-h-[92svh] max-w-[1500px] items-end px-6 pb-12 pt-36 sm:px-8 md:pb-16 lg:px-10">
-        <div className="w-full">
-          <div className="max-w-5xl">
-            <div className="mb-6 inline-flex items-center gap-3 border border-white/15 bg-black/30 px-4 py-2 backdrop-blur-md">
-              <span className={`h-2 w-2 rounded-full ${phase === "live" ? "animate-pulse bg-white" : "bg-white/45"}`} />
-              <span className="text-xs font-black uppercase tracking-[0.22em] text-white/75">
-                {content.eyebrow}
-              </span>
+      <div className="border-t border-white/10 bg-[#070707]">
+        <div className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-12">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div>
+              <div className="inline-flex items-center gap-3 border border-white/15 bg-white/[0.03] px-4 py-2">
+                <span
+                  className={`h-2 w-2 rounded-full ${
+                    phase === "live"
+                      ? "animate-pulse bg-white"
+                      : "bg-white/45"
+                  }`}
+                />
+                <span className="text-xs font-black uppercase tracking-[0.22em] text-white/75">
+                  {content.eyebrow}
+                </span>
+              </div>
+
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.3em] text-white/45 sm:text-sm">
+                {event.location} · {event.dateLabel}
+              </p>
+
+              <h1 className="mt-3 text-3xl font-black uppercase tracking-[-0.04em] sm:text-4xl md:text-5xl">
+                801 trinn. 315 høydemeter. Én vei opp.
+              </h1>
+
+              <p className="mt-3 text-sm font-medium text-white/50">
+                {content.status}
+              </p>
             </div>
 
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.34em] text-white/55 sm:text-sm">
-              {event.location} · {event.dateLabel}
-            </p>
-
-            <h1 className="max-w-5xl text-[clamp(3.7rem,10vw,9rem)] font-black uppercase leading-[0.78] tracking-[-0.075em]">
-              Stoltze
-              <br />
-              kleiven Opp
-            </h1>
-
-            <p className="mt-8 max-w-2xl text-xl font-semibold leading-tight text-white/90 sm:text-2xl md:text-3xl">
-              801 trinn. 315 høydemeter.
-              <br />
-              Én vei opp.
-            </p>
-
-            <p className="mt-5 text-sm font-medium text-white/55">{content.status}</p>
-
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3">
               <Link
                 href={content.primaryHref}
                 className="inline-flex min-h-14 items-center justify-center bg-white px-7 text-sm font-black uppercase tracking-[0.08em] text-black transition hover:bg-white/80"
               >
                 {content.primaryLabel}
               </Link>
+
               <Link
                 href={event.links.latestResults}
-                className="inline-flex min-h-14 items-center justify-center border border-white/25 bg-black/20 px-7 text-sm font-black uppercase tracking-[0.08em] text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white hover:text-black"
+                className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60 hover:bg-white hover:text-black"
               >
                 Resultater {event.year}
               </Link>
+
               <Link
                 href={event.links.gallery}
                 className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60"
@@ -64,30 +77,46 @@ export default function Hero({ phase }: { phase: EventPhase }) {
             </div>
           </div>
 
-          <div className="mt-10 grid max-w-4xl gap-3 border-t border-white/15 pt-5 sm:grid-cols-2 lg:mt-12">
-            <div className="border border-white/10 bg-black/20 px-5 py-4 backdrop-blur-sm">
-              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/40">
+          <div className="mt-8 grid gap-3 border-t border-white/10 pt-6 sm:grid-cols-2">
+            <div className="border border-white/10 bg-white/[0.025] px-5 py-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">
                 Løyperekord · menn
               </p>
+
               <div className="mt-2 flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-sm font-bold text-white/80">{event.records.men.name}</p>
-                  <p className="mt-1 text-xs text-white/40">{event.records.men.year}</p>
+                  <p className="text-sm font-bold text-white/80">
+                    {event.records.men.name}
+                  </p>
+                  <p className="mt-1 text-xs text-white/35">
+                    {event.records.men.year}
+                  </p>
                 </div>
-                <p className="text-3xl font-black tracking-[-0.06em]">{event.records.men.time}</p>
+
+                <p className="text-3xl font-black tracking-[-0.06em]">
+                  {event.records.men.time}
+                </p>
               </div>
             </div>
 
-            <div className="border border-white/10 bg-black/20 px-5 py-4 backdrop-blur-sm">
-              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/40">
+            <div className="border border-white/10 bg-white/[0.025] px-5 py-4">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">
                 Løyperekord · kvinner
               </p>
+
               <div className="mt-2 flex items-end justify-between gap-4">
                 <div>
-                  <p className="text-sm font-bold text-white/80">{event.records.women.name}</p>
-                  <p className="mt-1 text-xs text-white/40">{event.records.women.year}</p>
+                  <p className="text-sm font-bold text-white/80">
+                    {event.records.women.name}
+                  </p>
+                  <p className="mt-1 text-xs text-white/35">
+                    {event.records.women.year}
+                  </p>
                 </div>
-                <p className="text-3xl font-black tracking-[-0.06em]">{event.records.women.time}</p>
+
+                <p className="text-3xl font-black tracking-[-0.06em]">
+                  {event.records.women.time}
+                </p>
               </div>
             </div>
           </div>
