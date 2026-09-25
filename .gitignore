@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated legacy result imports
+/data/imports/*.json
+/data/imports/*.csv
