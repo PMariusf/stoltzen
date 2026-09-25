@@ -154,7 +154,7 @@ export default function RacePage() {
       <section className="bg-[#e9e8e3] text-black">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:py-32">
           <p className="text-xs font-black uppercase tracking-[0.24em] text-black/40">
-            Slik bruker vi løpssiden
+            Dette bør du vite
           </p>
 
           <h2 className="mt-4 max-w-4xl text-5xl font-black uppercase leading-[0.9] tracking-[-0.06em] sm:text-6xl lg:text-7xl">
@@ -210,7 +210,7 @@ export default function RacePage() {
       <section className="bg-[#090909]">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:px-10 lg:grid-cols-[1fr_0.8fr] lg:items-end lg:py-28">
           <div>
-            <p className="section-kicker">Neste steg</p>
+            <p className="section-kicker">Før løpsdagen</p>
             <h2 className="section-title mt-4">
               Klar for
               <br />

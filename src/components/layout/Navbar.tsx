@@ -26,7 +26,7 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-5 xl:flex" aria-label={locale === "en" ? "Main menu" : "Hovedmeny"}>
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href} className="nav-link text-sm font-semibold transition">
+            <Link key={item.href} href={item.href} className={`nav-link text-sm font-semibold transition ${pathname === item.href ? "is-active" : ""}`}>
               {item.label}
             </Link>
           ))}
@@ -71,7 +71,7 @@ export default function Navbar() {
           <div className="site-menu absolute right-0 top-14 w-[min(88vw,360px)] border p-3 shadow-2xl">
             <nav className="flex flex-col" aria-label={locale === "en" ? "Mobile menu" : "Mobilmeny"}>
               {navigation.map((item) => (
-                <Link key={item.href} href={item.href} className="mobile-nav-link border-b px-4 py-3.5 text-sm font-semibold last:border-b-0">
+                <Link key={item.href} href={item.href} className={`mobile-nav-link border-b px-4 py-3.5 text-sm font-semibold last:border-b-0 ${pathname === item.href ? "is-active" : ""}`}>
                   {item.label}
                 </Link>
               ))}

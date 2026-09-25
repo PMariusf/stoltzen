@@ -12,32 +12,32 @@ const practicalCards = [
   {
     number: "01",
     title: "Startnummer",
-    text: "Henting av startnummer, åpningstider og årets hentested legges inn her fra den offisielle arrangementsinformasjonen.",
+    text: "Startnummer kan hentes fredag og lørdag kl. 08:15–18:00. Følg årets arrangementsinformasjon for hentested.",
   },
   {
     number: "02",
     title: "Bagasje",
-    text: "Informasjon om innlevering, transport og henting av bagasje samles her når årets løsning er bekreftet.",
+    text: "Følg arrangørens informasjon om innlevering, transport og henting av bagasje på løpsdagen.",
   },
   {
     number: "03",
     title: "Toaletter",
-    text: "Plassering og tilgjengelighet for toaletter ved start- og målområdet legges inn her.",
+    text: "Se skilting og praktisk arrangementsinformasjon for toaletter ved start- og målområdet.",
   },
   {
     number: "04",
     title: "Transport",
-    text: "Anbefalt kollektivtransport, avstigning og gangvei til startområdet samles på ett sted.",
+    text: "Planlegg adkomsten til Fjellveien i god tid og beregn ekstra tid på løpsdagen.",
   },
   {
     number: "05",
     title: "Parkering",
-    text: "Eventuelle begrensninger og anbefalte parkeringsløsninger publiseres her før arrangementet.",
+    text: "Sjekk årets praktiske informasjon for eventuelle parkeringsbegrensninger rundt startområdet.",
   },
   {
     number: "06",
     title: "Publikum",
-    text: "Her beskriver vi hvor publikum kan følge løpet, hvordan man kommer seg dit og hvilke områder som må holdes frie.",
+    text: "Publikum må følge skilting og anvisninger langs løypen slik at traseen holdes fri for løperne.",
   },
 ];
 

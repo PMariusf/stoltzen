@@ -75,8 +75,15 @@ a {
   color: var(--nav-muted);
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.is-active {
   color: var(--nav-fg);
+}
+
+.nav-link.is-active {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.45rem;
 }
 
 .nav-control,
@@ -139,7 +146,8 @@ html[data-theme="light"] .nav-cta {
   border-color: var(--nav-border);
 }
 
-.mobile-nav-link:hover {
+.mobile-nav-link:hover,
+.mobile-nav-link.is-active {
   color: var(--nav-fg);
   background: color-mix(in srgb, var(--nav-fg) 5%, transparent);
 }
