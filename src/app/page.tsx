@@ -6,6 +6,7 @@ import ResultsSection from "@/components/home/ResultsSection";
 import RouteSection from "@/components/home/RouteSection";
 import StatsStrip from "@/components/home/StatsStrip";
 import TrainingSection from "@/components/home/TrainingSection";
+import WeekendSchedule from "@/components/home/WeekendSchedule";
 import { getEventPhase } from "@/lib/event-phase";
 
 export const dynamic = "force-dynamic";
@@ -17,6 +18,7 @@ export default function Home() {
     <main>
       <Hero phase={phase} locale="no" />
       <StatsStrip locale="no" />
+      <WeekendSchedule locale="no" />
       <AboutStoltzen locale="no" />
       <RouteSection locale="no" />
       <ResultsSection locale="no" />
