@@ -1,9 +1,24 @@
 #!/usr/bin/env node
 
+import dns from "node:dns";
+import { execFile } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import { promisify } from "node:util";
+
+dns.setDefaultResultOrder("ipv4first");
+
+const execFileAsync = promisify(execFile);
 
 const DEFAULT_BASE_URL = "https://www.stoltzen.no/statistikk";
+const LEGACY_BASE_URLS = [
+  "https://www.stoltzen.no/statistikk",
+  "https://stoltzen.no/statistikk",
+  "https://w3.stoltzen.no/statistikk",
+  "http://www.stoltzen.no/statistikk",
+  "http://stoltzen.no/statistikk",
+  "http://w3.stoltzen.no/statistikk",
+];
 const LETTERS = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "Æ", "Ø", "Å"];
 
 function parseArgs(argv) {
@@ -75,9 +90,40 @@ function sleep(ms) {
   return new Promise((resolvePromise) => setTimeout(resolvePromise, ms));
 }
 
-async function fetchHtml(url, attempt = 1) {
+function describeError(error) {
+  const cause = error?.cause;
+  const parts = [
+    error?.message,
+    cause?.code,
+    cause?.hostname,
+    cause?.message,
+  ].filter(Boolean);
+
+  return [...new Set(parts)].join(" | ");
+}
+
+function candidateUrls(inputUrl) {
+  const requested = new URL(inputUrl);
+  const suffix = requested.pathname.replace(/^\/statistikk/, "") + requested.search;
+  const candidates = [inputUrl];
+
+  if (
+    requested.hostname === "www.stoltzen.no" ||
+    requested.hostname === "stoltzen.no" ||
+    requested.hostname === "w3.stoltzen.no"
+  ) {
+    for (const baseUrl of LEGACY_BASE_URLS) {
+      candidates.push(`${baseUrl}${suffix}`);
+    }
+  }
+
+  return [...new Set(candidates)];
+}
+
+async function fetchWithNode(url) {
   const response = await fetch(url, {
     redirect: "follow",
+    signal: AbortSignal.timeout(15000),
     headers: {
       "user-agent":
         "StoltzenMigration/0.1 (+https://stoltzen.no; low-rate archival migration)",
@@ -87,15 +133,65 @@ async function fetchHtml(url, attempt = 1) {
   });
 
   if (!response.ok) {
-    if (attempt < 3 && response.status >= 500) {
-      await sleep(900 * attempt);
-      return fetchHtml(url, attempt + 1);
-    }
-
-    throw new Error(`${response.status} ${response.statusText} for ${url}`);
+    throw new Error(`${response.status} ${response.statusText}`);
   }
 
   return response.text();
+}
+
+async function fetchWithCurl(url) {
+  const { stdout } = await execFileAsync(
+    "curl",
+    [
+      "--location",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "--max-time",
+      "20",
+      "--user-agent",
+      "StoltzenMigration/0.1 (+https://stoltzen.no; low-rate archival migration)",
+      "--header",
+      "Accept: text/html,application/xhtml+xml",
+      url,
+    ],
+    {
+      maxBuffer: 8 * 1024 * 1024,
+      encoding: "utf8",
+    },
+  );
+
+  if (!stdout.trim()) {
+    throw new Error("curl returned an empty response");
+  }
+
+  return stdout;
+}
+
+async function fetchHtml(url) {
+  const errors = [];
+  const candidates = candidateUrls(url);
+
+  for (const candidate of candidates) {
+    try {
+      return await fetchWithNode(candidate);
+    } catch (error) {
+      errors.push(`Node ${candidate}: ${describeError(error)}`);
+    }
+  }
+
+  for (const candidate of candidates) {
+    try {
+      console.log(`  Node fetch failed; trying curl: ${candidate}`);
+      return await fetchWithCurl(candidate);
+    } catch (error) {
+      errors.push(`curl ${candidate}: ${describeError(error)}`);
+    }
+  }
+
+  throw new Error(
+    `Could not reach legacy Stoltzen server.\n    ${errors.join("\n    ")}`,
+  );
 }
 
 function decodeHtml(value = "") {
