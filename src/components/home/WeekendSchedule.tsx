@@ -48,8 +48,8 @@ export default function WeekendSchedule({
 
   return (
     <section className="border-b border-white/10 bg-[#0d0d0d] text-white">
-      <div className="mx-auto max-w-7xl px-6 pb-16 pt-20 md:px-10 md:pb-20 md:pt-24">
-        <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:items-start">
+      <div className="mx-auto max-w-7xl px-5 pb-14 pt-16 sm:px-6 md:px-10 md:pb-20 md:pt-24">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:items-start">
           <div>
             <p className="section-kicker">
               {en ? "This weekend" : "Denne helgen"}
@@ -67,7 +67,7 @@ export default function WeekendSchedule({
             {days.map((day) => (
               <article
                 key={day.day}
-                className="border border-white/10 bg-white/[0.025] p-6"
+                className="border border-white/10 bg-white/[0.025] p-5 sm:p-6"
               >
                 <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-4">
                   <div>
@@ -85,10 +85,10 @@ export default function WeekendSchedule({
                   {day.items.map(([label, time]) => (
                     <div
                       key={label}
-                      className="flex items-center justify-between gap-5 py-4"
+                      className="flex items-start justify-between gap-4 py-4 sm:items-center sm:gap-5"
                     >
-                      <span className="text-sm text-white/50">{label}</span>
-                      <span className="text-sm font-black uppercase tracking-[0.08em] text-white">
+                      <span className="max-w-[58%] text-sm leading-5 text-white/50">{label}</span>
+                      <span className="shrink-0 text-right text-xs font-black uppercase tracking-[0.08em] text-white sm:text-sm">
                         {time}
                       </span>
                     </div>
@@ -113,7 +113,7 @@ export default function WeekendSchedule({
           >
             {en ? "Practical info" : "Praktisk info"}
           </Link>
-          <p className="ml-auto text-xs text-white/28">
+          <p className="w-full text-left text-xs leading-5 text-white/28 sm:ml-auto sm:w-auto sm:text-right">
             {en
               ? "Individual start times are shown in the start list."
               : "Personlig starttid finner du i startlisten."}

@@ -34,7 +34,7 @@ export default function GallerySection({ locale = "no" }: { locale?: Locale }) {
 
   return (
     <section className="bg-[#090909] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:px-10 md:py-24 lg:py-32">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
             <p className="section-kicker">{en ? "Stoltzen in photos" : "Stoltzen i bilder"}</p>
@@ -58,8 +58,10 @@ export default function GallerySection({ locale = "no" }: { locale?: Locale }) {
               key={image.src}
               className={`group relative overflow-hidden border border-white/10 bg-[#151515] ${
                 index === 0
-                  ? "col-span-2 row-span-2 min-h-[360px] md:min-h-[460px]"
-                  : "min-h-[175px] md:min-h-[225px]"
+                  ? "col-span-2 row-span-2 min-h-[300px] sm:min-h-[360px] md:min-h-[460px]"
+                  : index === 3
+                    ? "col-span-2 min-h-[180px] md:col-span-1 md:min-h-[225px]"
+                    : "min-h-[155px] sm:min-h-[175px] md:min-h-[225px]"
               }`}
             >
               <Image
@@ -81,12 +83,6 @@ export default function GallerySection({ locale = "no" }: { locale?: Locale }) {
             </figure>
           ))}
         </div>
-
-        <p className="mt-4 text-xs text-white/30">
-          {en
-            ? "Preview images from Stoltzekleiven Opp 2025. The final gallery can later be connected to the official photo archive."
-            : "Visningsbilder fra Stoltzekleiven Opp 2025. Det endelige galleriet kan senere kobles mot det offisielle fotoarkivet."}
-        </p>
       </div>
     </section>
   );

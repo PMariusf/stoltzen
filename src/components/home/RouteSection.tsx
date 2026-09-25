@@ -10,9 +10,9 @@ export default function RouteSection({ locale = "no" }: { locale?: Locale }) {
 
   return (
     <section className="bg-[#111] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:py-32">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="route-panel relative min-h-[430px] overflow-hidden border border-white/10 p-8 sm:p-10">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:px-10 md:py-24 lg:py-32">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
+          <div className="route-panel relative min-h-[340px] overflow-hidden border border-white/10 p-6 sm:min-h-[430px] sm:p-10">
             <Image
               src={routeImage}
               alt={en ? "Stoltzekleiven during the race" : "Stoltzekleiven under løpet"}
@@ -24,7 +24,7 @@ export default function RouteSection({ locale = "no" }: { locale?: Locale }) {
             <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/35 to-black/85" />
             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_60%)]" />
 
-            <div className="relative flex h-full min-h-[350px] flex-col justify-between">
+            <div className="relative flex h-full min-h-[290px] flex-col justify-between sm:min-h-[350px]">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.24em] text-white/55">
                   {en ? "Start" : "Start"}

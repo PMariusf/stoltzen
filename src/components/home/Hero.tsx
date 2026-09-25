@@ -38,7 +38,7 @@ export default function Hero({
       </div>
 
       <div className="border-t border-white/10 bg-[#070707]">
-        <div className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-12">
+        <div className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-10 md:px-10 md:py-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <div className="inline-flex items-center gap-3 border border-white/15 bg-white/[0.03] px-4 py-2">
@@ -67,31 +67,31 @@ export default function Hero({
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="grid w-full gap-2 sm:flex sm:w-auto sm:flex-wrap sm:gap-3">
               <Link
                 href={content.primaryHref}
-                className="inline-flex min-h-14 items-center justify-center bg-white px-7 text-sm font-black uppercase tracking-[0.08em] text-black transition hover:bg-white/80"
+                className="inline-flex min-h-13 w-full items-center justify-center sm:min-h-14 sm:w-auto bg-white px-7 text-sm font-black uppercase tracking-[0.08em] text-black transition hover:bg-white/80"
               >
                 {content.primaryLabel}
               </Link>
 
               <Link
                 href={latestResults}
-                className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60 hover:bg-white hover:text-black"
+                className="inline-flex min-h-13 w-full items-center justify-center sm:min-h-14 sm:w-auto border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60 hover:bg-white hover:text-black"
               >
                 {en ? "Results" : "Resultater"} {event.year}
               </Link>
 
               <Link
                 href={gallery}
-                className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60"
+                className="inline-flex min-h-13 w-full items-center justify-center sm:min-h-14 sm:w-auto border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60"
               >
                 {en ? "See photos" : "Se bilder"}
               </Link>
             </div>
           </div>
 
-          <div className="mt-8 grid gap-3 border-t border-white/10 pt-6 sm:grid-cols-2">
+          <div className="mt-7 grid gap-2 border-t border-white/10 pt-5 sm:mt-8 sm:gap-3 sm:pt-6 sm:grid-cols-2">
             {[
               {
                 label: en ? "Course record · men" : "Løyperekord · menn",

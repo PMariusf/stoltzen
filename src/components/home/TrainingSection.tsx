@@ -18,13 +18,13 @@ export default function TrainingSection({ locale = "no" }: { locale?: Locale }) 
 
   return (
     <section className="border-t border-black/10 bg-[#ecebe6] text-black">
-      <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:py-32">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 md:px-10 md:py-24 lg:py-32">
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.24em] text-black/45">
               {en ? "Preparation" : "Forberedelser"}
             </p>
-            <h2 className="mt-4 text-5xl font-black uppercase leading-[0.9] tracking-[-0.06em] sm:text-6xl">
+            <h2 className="mt-4 text-[2.75rem] font-black uppercase sm:text-6xl leading-[0.9] tracking-[-0.06em]">
               {en ? (
                 <>Ready for<br />the climb.</>
               ) : (
@@ -56,9 +56,9 @@ export default function TrainingSection({ locale = "no" }: { locale?: Locale }) 
           </div>
         </div>
 
-        <div className="mt-14 grid gap-px overflow-hidden border border-black/15 bg-black/15 md:grid-cols-3">
+        <div className="mt-12 grid gap-px sm:mt-14 overflow-hidden border border-black/15 bg-black/15 md:grid-cols-3">
           {cards.map(([number, title, text]) => (
-            <article key={number} className="bg-[#ecebe6] p-7 md:p-8">
+            <article key={number} className="bg-[#ecebe6] p-6 sm:p-7 md:p-8">
               <p className="text-[10px] font-black uppercase tracking-[0.22em] text-black/30">{number}</p>
               <h3 className="mt-10 text-2xl font-black uppercase tracking-[-0.04em]">{title}</h3>
               <p className="mt-3 max-w-sm text-sm leading-6 text-black/55">{text}</p>
