@@ -12,7 +12,7 @@ export default function Hero({ phase }: { phase: EventPhase }) {
       <div className="pt-20">
         <div className="relative mx-auto w-full max-w-[2172px]">
           <Image
-            src="/images/hero/stoltzen-hero.png"
+            src="/images/hero/Stoltzen-hero.png"
             alt="Stoltzekleiven Opp med Varegg-logo, løpere, rekordtider og jubileumsgrafikk"
             width={2172}
             height={724}
