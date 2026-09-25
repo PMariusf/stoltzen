@@ -1,5 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
+
+const routeImage =
+  "https://cdn.prod.website-files.com/68cbafa2a0c398cc2ffa1a2d/68d68dd67914ac256466185c_stoltzen5.jpg";
 
 export default function RouteSection({ locale = "no" }: { locale?: Locale }) {
   const en = locale === "en";
@@ -9,29 +13,51 @@ export default function RouteSection({ locale = "no" }: { locale?: Locale }) {
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:py-32">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="route-panel relative min-h-[430px] overflow-hidden border border-white/10 p-8 sm:p-10">
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.04),transparent_60%)]" />
+            <Image
+              src={routeImage}
+              alt={en ? "Stoltzekleiven during the race" : "Stoltzekleiven under løpet"}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+              style={{ objectPosition: "center" }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/35 to-black/85" />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_60%)]" />
+
             <div className="relative flex h-full min-h-[350px] flex-col justify-between">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-white/40">{en ? "Start" : "Start"}</p>
-                <p className="mt-2 text-3xl font-black uppercase tracking-[-0.04em]">Fjellveien</p>
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-white/55">
+                  {en ? "Start" : "Start"}
+                </p>
+                <p className="mt-2 text-3xl font-black uppercase tracking-[-0.04em]">
+                  Fjellveien
+                </p>
               </div>
-              <div className="ml-5 h-28 w-px bg-gradient-to-b from-white/60 to-white/10" />
+
+              <div className="ml-5 flex flex-1 items-center py-8">
+                <div className="h-full min-h-24 w-px bg-gradient-to-b from-white/70 via-white/40 to-white/10" />
+              </div>
+
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-white/40">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-white/55">
                   {en ? "801 steps later" : "801 trinn senere"}
                 </p>
-                <p className="mt-2 text-3xl font-black uppercase tracking-[-0.04em]">Sandvikspilen</p>
+                <p className="mt-2 text-3xl font-black uppercase tracking-[-0.04em]">
+                  Sandvikspilen
+                </p>
               </div>
             </div>
           </div>
 
           <div>
             <p className="section-kicker">{en ? "The course" : "Løypen"}</p>
-            <h2 className="section-title mt-4">{en ? "One direction. Up." : "Én retning. Opp."}</h2>
+            <h2 className="section-title mt-4">
+              {en ? "One direction. Up." : "Én retning. Opp."}
+            </h2>
             <p className="mt-6 max-w-xl text-lg leading-8 text-white/62">
               {en
-                ? "A dedicated course page brings together the map, elevation profile, images from key sections and practical advice for first-time runners."
-                : "En egen løypeside kan samle kart, høydeprofil, bilder fra de viktigste partiene og praktiske tips for førstegangsløpere."}
+                ? "From Fjellveien the route climbs relentlessly through the stone steps toward Sandvikspilen. Short on paper. Completely different when the clock starts."
+                : "Fra Fjellveien går det nesten bare én vei gjennom steintrappene mot Sandvikspilen. Kort på papiret. Noe helt annet når klokken starter."}
             </p>
             <Link href={en ? "/en/race" : "/lopet"} className="text-link mt-8 inline-flex">
               {en ? "See the course" : "Se løypen"} <span aria-hidden="true">→</span>
