@@ -2,12 +2,11 @@ import AboutStoltzen from "@/components/home/AboutStoltzen";
 import GallerySection from "@/components/home/GallerySection";
 import Hero from "@/components/home/Hero";
 import HistorySection from "@/components/home/HistorySection";
-import NewsSection from "@/components/home/NewsSection";
-import PartnersSection from "@/components/home/PartnersSection";
 import ResultsSection from "@/components/home/ResultsSection";
 import RouteSection from "@/components/home/RouteSection";
 import StatsStrip from "@/components/home/StatsStrip";
 import TrainingSection from "@/components/home/TrainingSection";
+import FinalCta from "@/components/home/FinalCta";
 import WeekendSchedule from "@/components/home/WeekendSchedule";
 import { getEventPhase } from "@/lib/event-phase";
 
@@ -27,8 +26,7 @@ export default function EnglishHome() {
       <GallerySection locale="en" />
       <HistorySection locale="en" />
       <TrainingSection locale="en" />
-      <NewsSection locale="en" />
-      <PartnersSection locale="en" />
+      <FinalCta locale="en" />
     </main>
   );
 }

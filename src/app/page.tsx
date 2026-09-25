@@ -6,6 +6,7 @@ import ResultsSection from "@/components/home/ResultsSection";
 import RouteSection from "@/components/home/RouteSection";
 import StatsStrip from "@/components/home/StatsStrip";
 import TrainingSection from "@/components/home/TrainingSection";
+import FinalCta from "@/components/home/FinalCta";
 import WeekendSchedule from "@/components/home/WeekendSchedule";
 import { getEventPhase } from "@/lib/event-phase";
 
@@ -25,6 +26,7 @@ export default function Home() {
       <GallerySection locale="no" />
       <HistorySection locale="no" />
       <TrainingSection locale="no" />
+      <FinalCta locale="no" />
     </main>
   );
 }
