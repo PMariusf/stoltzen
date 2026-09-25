@@ -48,8 +48,8 @@ export default function WeekendSchedule({
 
   return (
     <section className="border-b border-white/10 bg-[#0d0d0d] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-16">
-        <div className="grid gap-8 lg:grid-cols-[0.65fr_1.35fr] lg:items-end">
+      <div className="mx-auto max-w-7xl px-6 pb-16 pt-20 md:px-10 md:pb-20 md:pt-24">
+        <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:items-start">
           <div>
             <p className="section-kicker">
               {en ? "This weekend" : "Denne helgen"}
