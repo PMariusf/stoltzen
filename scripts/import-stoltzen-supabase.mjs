@@ -144,7 +144,7 @@ function buildResult(runnerId, profile, result) {
     bib: null,
     class_name: profile.genderClass ?? null,
     club_original: profile.club ?? null,
-    placing: null,
+    place_rank: null,
     time_text: result.time ?? null,
     time_seconds: timeToSeconds(result.time),
     finish_time_text: result.finishTime ?? result.time ?? null,
