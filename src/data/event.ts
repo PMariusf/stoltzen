@@ -17,6 +17,18 @@ export const event = {
     distance: "0,9 km",
     since: 1979,
   },
+  records: {
+    men: {
+      name: "Stian Øvergaard Aarvik",
+      time: "7:46",
+      year: 2019,
+    },
+    women: {
+      name: "Kristin Størmer Steira",
+      time: "9:35",
+      year: 2013,
+    },
+  },
   links: {
     registration: "/pamelding",
     startAndResults: "/resultater",
