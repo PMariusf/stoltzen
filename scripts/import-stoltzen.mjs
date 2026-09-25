@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { isUtf8 } from "node:buffer";
 import dns from "node:dns";
 import { execFile } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -120,6 +121,26 @@ function candidateUrls(inputUrl) {
   return [...new Set(candidates)];
 }
 
+function decodeResponseBuffer(buffer, contentType = "") {
+  const charset = contentType.toLowerCase();
+
+  if (
+    charset.includes("iso-8859-1") ||
+    charset.includes("latin1") ||
+    charset.includes("windows-1252")
+  ) {
+    return buffer.toString("latin1");
+  }
+
+  if (isUtf8(buffer)) {
+    return buffer.toString("utf8");
+  }
+
+  // The legacy Stoltzen statistics pages contain old Norwegian text encoded
+  // outside UTF-8. Latin-1 preserves æ/ø/å instead of replacing them with �.
+  return buffer.toString("latin1");
+}
+
 async function fetchWithNode(url) {
   const response = await fetch(url, {
     redirect: "follow",
@@ -136,7 +157,11 @@ async function fetchWithNode(url) {
     throw new Error(`${response.status} ${response.statusText}`);
   }
 
-  return response.text();
+  const buffer = Buffer.from(await response.arrayBuffer());
+  return decodeResponseBuffer(
+    buffer,
+    response.headers.get("content-type") ?? "",
+  );
 }
 
 async function fetchWithCurl(url) {
@@ -157,15 +182,15 @@ async function fetchWithCurl(url) {
     ],
     {
       maxBuffer: 8 * 1024 * 1024,
-      encoding: "utf8",
+      encoding: "buffer",
     },
   );
 
-  if (!stdout.trim()) {
+  if (!stdout.length) {
     throw new Error("curl returned an empty response");
   }
 
-  return stdout;
+  return decodeResponseBuffer(stdout);
 }
 
 async function fetchHtml(url) {
