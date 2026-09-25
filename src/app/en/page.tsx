@@ -12,21 +12,21 @@ import { getEventPhase } from "@/lib/event-phase";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default function EnglishHome() {
   const phase = getEventPhase(new Date());
 
   return (
     <main>
-      <Hero phase={phase} locale="no" />
-      <StatsStrip locale="no" />
-      <WeekendSchedule locale="no" />
-      <AboutStoltzen locale="no" />
-      <RouteSection locale="no" />
-      <ResultsSection locale="no" />
-      <GallerySection locale="no" />
-      <HistorySection locale="no" />
-      <TrainingSection locale="no" />
-      <FinalCta locale="no" />
+      <Hero phase={phase} locale="en" />
+      <StatsStrip locale="en" />
+      <WeekendSchedule locale="en" />
+      <AboutStoltzen locale="en" />
+      <RouteSection locale="en" />
+      <ResultsSection locale="en" />
+      <GallerySection locale="en" />
+      <HistorySection locale="en" />
+      <TrainingSection locale="en" />
+      <FinalCta locale="en" />
     </main>
   );
 }

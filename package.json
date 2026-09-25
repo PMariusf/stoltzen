@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "import:stoltzen": "node scripts/import-stoltzen.mjs",
+    "import:stoltzen:sample": "node scripts/import-stoltzen.mjs --letters A --limit 25",
+    "import:stoltzen:supabase": "node scripts/import-stoltzen-supabase.mjs"
   },
   "dependencies": {
     "next": "16.3.6",
