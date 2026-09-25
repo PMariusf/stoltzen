@@ -31,7 +31,7 @@ export default function HistorySection({ locale = "no" }: { locale?: Locale }) {
   return (
     <section className="overflow-hidden border-y border-white/10 bg-[#141414] text-white">
       <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:py-32">
-        <div className="grid gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+        <div className="grid gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
           <div>
             <p className="section-kicker">{en ? "History" : "Historie"}</p>
             <p className="mt-6 text-[clamp(6rem,17vw,13rem)] font-black leading-[0.72] tracking-[-0.09em] text-white/10">
