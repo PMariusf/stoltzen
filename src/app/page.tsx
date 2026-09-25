@@ -2,8 +2,6 @@ import AboutStoltzen from "@/components/home/AboutStoltzen";
 import GallerySection from "@/components/home/GallerySection";
 import Hero from "@/components/home/Hero";
 import HistorySection from "@/components/home/HistorySection";
-import NewsSection from "@/components/home/NewsSection";
-import PartnersSection from "@/components/home/PartnersSection";
 import ResultsSection from "@/components/home/ResultsSection";
 import RouteSection from "@/components/home/RouteSection";
 import StatsStrip from "@/components/home/StatsStrip";
@@ -25,8 +23,6 @@ export default function Home() {
       <GallerySection locale="no" />
       <HistorySection locale="no" />
       <TrainingSection locale="no" />
-      <NewsSection locale="no" />
-      <PartnersSection locale="no" />
     </main>
   );
 }
