@@ -467,7 +467,16 @@ export default function ResultsExplorer({
                         {result.place_rank ?? "—"}
                       </td>
                       <td className="px-3 py-4">
-                        <span className="font-bold">{result.name}</span>
+                        <Link
+                          href={
+                            en
+                              ? `/en/profile/${result.legacy_id}`
+                              : `/profil/${result.legacy_id}`
+                          }
+                          className="font-bold transition hover:text-white hover:underline hover:underline-offset-4"
+                        >
+                          {result.name}
+                        </Link>
                         <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-white/25">
                           ID {result.legacy_id}
                         </span>

@@ -16,6 +16,20 @@ export function getLocaleFromPathname(pathname: string): Locale {
 }
 
 export function getLocalePath(pathname: string, target: Locale): string {
+  const profile = pathname.match(/^\/profil\/(\d+)$/);
+  if (profile) {
+    return target === "en"
+      ? `/en/profile/${profile[1]}`
+      : `/profil/${profile[1]}`;
+  }
+
+  const englishProfile = pathname.match(/^\/en\/profile\/(\d+)$/);
+  if (englishProfile) {
+    return target === "en"
+      ? `/en/profile/${englishProfile[1]}`
+      : `/profil/${englishProfile[1]}`;
+  }
+
   const resultYear = pathname.match(/^\/resultater\/(\d{4})$/);
   if (resultYear) {
     return target === "en"
