@@ -14,52 +14,82 @@ export default function Hero({ phase }: { phase: EventPhase }) {
         801
       </div>
 
-      <div className="relative mx-auto flex min-h-[92svh] max-w-[1500px] items-end px-6 pb-16 pt-36 sm:px-8 md:pb-24 lg:px-10">
-        <div className="max-w-5xl">
-          <div className="mb-6 inline-flex items-center gap-3 border border-white/15 bg-black/30 px-4 py-2 backdrop-blur-md">
-            <span className={`h-2 w-2 rounded-full ${phase === "live" ? "animate-pulse bg-white" : "bg-white/45"}`} />
-            <span className="text-xs font-black uppercase tracking-[0.22em] text-white/75">
-              {content.eyebrow}
-            </span>
+      <div className="relative mx-auto flex min-h-[92svh] max-w-[1500px] items-end px-6 pb-12 pt-36 sm:px-8 md:pb-16 lg:px-10">
+        <div className="w-full">
+          <div className="max-w-5xl">
+            <div className="mb-6 inline-flex items-center gap-3 border border-white/15 bg-black/30 px-4 py-2 backdrop-blur-md">
+              <span className={`h-2 w-2 rounded-full ${phase === "live" ? "animate-pulse bg-white" : "bg-white/45"}`} />
+              <span className="text-xs font-black uppercase tracking-[0.22em] text-white/75">
+                {content.eyebrow}
+              </span>
+            </div>
+
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.34em] text-white/55 sm:text-sm">
+              {event.location} · {event.dateLabel}
+            </p>
+
+            <h1 className="max-w-5xl text-[clamp(3.7rem,10vw,9rem)] font-black uppercase leading-[0.78] tracking-[-0.075em]">
+              Stoltze
+              <br />
+              kleiven Opp
+            </h1>
+
+            <p className="mt-8 max-w-2xl text-xl font-semibold leading-tight text-white/90 sm:text-2xl md:text-3xl">
+              801 trinn. 315 høydemeter.
+              <br />
+              Én vei opp.
+            </p>
+
+            <p className="mt-5 text-sm font-medium text-white/55">{content.status}</p>
+
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href={content.primaryHref}
+                className="inline-flex min-h-14 items-center justify-center bg-white px-7 text-sm font-black uppercase tracking-[0.08em] text-black transition hover:bg-white/80"
+              >
+                {content.primaryLabel}
+              </Link>
+              <Link
+                href={event.links.latestResults}
+                className="inline-flex min-h-14 items-center justify-center border border-white/25 bg-black/20 px-7 text-sm font-black uppercase tracking-[0.08em] text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white hover:text-black"
+              >
+                Resultater {event.year}
+              </Link>
+              <Link
+                href={event.links.gallery}
+                className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60"
+              >
+                Se bilder
+              </Link>
+            </div>
           </div>
 
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.34em] text-white/55 sm:text-sm">
-            {event.location} · {event.dateLabel}
-          </p>
+          <div className="mt-10 grid max-w-4xl gap-3 border-t border-white/15 pt-5 sm:grid-cols-2 lg:mt-12">
+            <div className="border border-white/10 bg-black/20 px-5 py-4 backdrop-blur-sm">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/40">
+                Løyperekord · menn
+              </p>
+              <div className="mt-2 flex items-end justify-between gap-4">
+                <div>
+                  <p className="text-sm font-bold text-white/80">{event.records.men.name}</p>
+                  <p className="mt-1 text-xs text-white/40">{event.records.men.year}</p>
+                </div>
+                <p className="text-3xl font-black tracking-[-0.06em]">{event.records.men.time}</p>
+              </div>
+            </div>
 
-          <h1 className="max-w-5xl text-[clamp(3.7rem,10vw,9rem)] font-black uppercase leading-[0.78] tracking-[-0.075em]">
-            Stoltze
-            <br />
-            kleiven Opp
-          </h1>
-
-          <p className="mt-8 max-w-2xl text-xl font-semibold leading-tight text-white/90 sm:text-2xl md:text-3xl">
-            801 trinn. 315 høydemeter.
-            <br />
-            Én vei opp.
-          </p>
-
-          <p className="mt-5 text-sm font-medium text-white/55">{content.status}</p>
-
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Link
-              href={content.primaryHref}
-              className="inline-flex min-h-14 items-center justify-center bg-white px-7 text-sm font-black uppercase tracking-[0.08em] text-black transition hover:bg-white/80"
-            >
-              {content.primaryLabel}
-            </Link>
-            <Link
-              href={event.links.latestResults}
-              className="inline-flex min-h-14 items-center justify-center border border-white/25 bg-black/20 px-7 text-sm font-black uppercase tracking-[0.08em] text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white hover:text-black"
-            >
-              Resultater {event.year}
-            </Link>
-            <Link
-              href={event.links.gallery}
-              className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60"
-            >
-              Se bilder
-            </Link>
+            <div className="border border-white/10 bg-black/20 px-5 py-4 backdrop-blur-sm">
+              <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/40">
+                Løyperekord · kvinner
+              </p>
+              <div className="mt-2 flex items-end justify-between gap-4">
+                <div>
+                  <p className="text-sm font-bold text-white/80">{event.records.women.name}</p>
+                  <p className="mt-1 text-xs text-white/40">{event.records.women.year}</p>
+                </div>
+                <p className="text-3xl font-black tracking-[-0.06em]">{event.records.women.time}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
