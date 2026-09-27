@@ -2,6 +2,8 @@ import AboutStoltzen from "@/components/home/AboutStoltzen";
 import GallerySection from "@/components/home/GallerySection";
 import Hero from "@/components/home/Hero";
 import HistorySection from "@/components/home/HistorySection";
+import MomentsSection from "@/components/home/MomentsSection";
+import PartnersSection from "@/components/home/PartnersSection";
 import ResultsSection from "@/components/home/ResultsSection";
 import RouteSection from "@/components/home/RouteSection";
 import StatsStrip from "@/components/home/StatsStrip";
@@ -21,11 +23,13 @@ export default function Home() {
       <StatsStrip locale="no" />
       <WeekendSchedule locale="no" />
       <AboutStoltzen locale="no" />
+      <MomentsSection locale="no" />
       <RouteSection locale="no" />
       <ResultsSection locale="no" />
       <GallerySection locale="no" />
       <HistorySection locale="no" />
       <TrainingSection locale="no" />
+      <PartnersSection locale="no" />
       <FinalCta locale="no" />
     </main>
   );
