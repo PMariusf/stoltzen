@@ -47,7 +47,7 @@ export default function WeekendSchedule({
       ];
 
   return (
-    <section className="border-b border-white/10 bg-[#0d0d0d] text-white">
+    <section className="always-dark-surface border-b border-white/10 bg-[#0d0d0d] text-white">
       <div className="mx-auto max-w-7xl px-5 pb-14 pt-16 sm:px-6 md:px-10 md:pb-20 md:pt-24">
         <div className="grid gap-8 sm:gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:items-start">
           <div>

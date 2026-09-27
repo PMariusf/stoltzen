@@ -6,7 +6,7 @@ export default function FinalCta({ locale = "no" }: { locale?: Locale }) {
   const en = locale === "en";
 
   return (
-    <section className="border-t border-white/10 bg-black text-white">
+    <section className="always-dark-surface border-t border-white/10 bg-black text-white">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-20 md:px-10 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>

@@ -401,3 +401,21 @@ html[data-theme="light"] .subpage-hero [class*="border-white/"] {
 html[data-theme="light"] .subpage-hero [class*="bg-white/"] {
   background-color: rgba(17, 17, 17, 0.035) !important;
 }
+
+
+/* Keep intentionally dark accent sections accessible in both themes. */
+html[data-theme="light"] .always-dark-surface {
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .always-dark-surface .section-kicker {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+html[data-theme="light"] .always-dark-surface .text-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html[data-theme="light"] .always-dark-surface .text-link:hover {
+  color: #ffffff !important;
+}
