@@ -1,34 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 
-type Theme = "dark" | "light";
-
 export default function ThemeToggle({ locale }: { locale: Locale }) {
-  const [theme, setTheme] = useState<Theme>("dark");
-
-  useEffect(() => {
+  function toggleTheme() {
     const current =
       document.documentElement.dataset.theme === "light" ? "light" : "dark";
-    setTheme(current);
-  }, []);
+    const next = current === "dark" ? "light" : "dark";
 
-  function toggleTheme() {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
     document.documentElement.dataset.theme = next;
     localStorage.setItem("stoltzen-theme", next);
   }
 
-  const label =
-    locale === "en"
-      ? theme === "dark"
-        ? "Switch to light mode"
-        : "Switch to dark mode"
-      : theme === "dark"
-        ? "Bytt til lys modus"
-        : "Bytt til mørk modus";
+  const label = locale === "en" ? "Toggle color theme" : "Bytt fargetema";
 
   return (
     <button
@@ -38,8 +22,11 @@ export default function ThemeToggle({ locale }: { locale: Locale }) {
       aria-label={label}
       title={label}
     >
-      <span aria-hidden="true" className="text-base leading-none">
-        {theme === "dark" ? "☀" : "☾"}
+      <span aria-hidden="true" className="theme-icon-sun text-base leading-none">
+        ☀
+      </span>
+      <span aria-hidden="true" className="theme-icon-moon text-base leading-none">
+        ☾
       </span>
     </button>
   );

@@ -65,6 +65,13 @@ export default function ResultsExplorer({
   fixedYear,
 }: ResultsExplorerProps) {
   const en = locale === "en";
+  const configured = Boolean(supabaseUrl && supabaseKey);
+  const configurationError = configured
+    ? null
+    : en
+      ? "Supabase is not configured for this environment."
+      : "Supabase er ikke konfigurert for dette miljøet.";
+
   const [query, setQuery] = useState("");
   const [year, setYear] = useState(fixedYear ? String(fixedYear) : "all");
   const [className, setClassName] = useState("all");
@@ -73,8 +80,8 @@ export default function ResultsExplorer({
   const [years, setYears] = useState<number[]>([]);
   const [filterRows, setFilterRows] = useState<FilterOptionRow[]>([]);
   const [totalCount, setTotalCount] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [filterLoading, setFilterLoading] = useState(true);
+  const [loading, setLoading] = useState(configured);
+  const [filterLoading, setFilterLoading] = useState(configured);
   const [error, setError] = useState<string | null>(null);
 
   const selectedYear = fixedYear ? String(fixedYear) : year;
@@ -94,16 +101,7 @@ export default function ResultsExplorer({
   );
 
   useEffect(() => {
-    if (!supabaseUrl || !supabaseKey) {
-      setError(
-        en
-          ? "Supabase is not configured for this environment."
-          : "Supabase er ikke konfigurert for dette miljøet.",
-      );
-      setLoading(false);
-      setFilterLoading(false);
-      return;
-    }
+    if (!supabaseUrl || !supabaseKey) return;
 
     let cancelled = false;
 
@@ -133,13 +131,12 @@ export default function ResultsExplorer({
     return () => {
       cancelled = true;
     };
-  }, [en]);
+  }, []);
 
   useEffect(() => {
     if (!supabaseUrl || !supabaseKey) return;
 
     let cancelled = false;
-    setFilterLoading(true);
 
     async function loadFilterOptions() {
       const params = new URLSearchParams({
@@ -309,6 +306,7 @@ export default function ResultsExplorer({
             <select
               value={year}
               onChange={(event) => {
+                setFilterLoading(true);
                 setYear(event.target.value);
                 setClassName("all");
                 setClub("all");
@@ -370,7 +368,10 @@ export default function ResultsExplorer({
               setQuery("");
               setClassName("all");
               setClub("all");
-              if (!fixedYear) setYear("all");
+              if (!fixedYear) {
+                setFilterLoading(true);
+                setYear("all");
+              }
             }}
             className="min-h-13 w-full border border-white/15 px-5 text-xs font-black uppercase tracking-[0.12em] text-white/65 transition hover:border-white/45 hover:text-white"
           >
@@ -410,13 +411,13 @@ export default function ResultsExplorer({
           )}
         </div>
 
-        {error ? (
+        {configurationError || error ? (
           <div className="mt-6 border border-red-300/20 bg-red-300/[0.04] px-6 py-8">
             <p className="font-black uppercase tracking-[-0.02em]">
               {en ? "Could not load results" : "Kunne ikke laste resultater"}
             </p>
             <p className="mt-2 break-words text-sm leading-6 text-white/45">
-              {error}
+              {configurationError ?? error}
             </p>
           </div>
         ) : loading ? (
