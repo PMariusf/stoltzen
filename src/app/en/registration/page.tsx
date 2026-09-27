@@ -29,8 +29,8 @@ const options = [
 export default function RegistrationPage() {
   return (
     <main className="bg-[#080808] text-white">
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,0.09),transparent_24%),linear-gradient(145deg,#171717,#070707_60%)]" />
+      <section className="subpage-hero relative overflow-hidden border-b border-white/10">
+        <div className="subpage-hero-bg absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,0.09),transparent_24%),linear-gradient(145deg,#171717,#070707_60%)]" />
 
         <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-36 md:px-10 md:pb-28 md:pt-44">
           <p className="section-kicker">Registration</p>

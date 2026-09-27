@@ -377,3 +377,27 @@ html[data-theme="light"] .text-link:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Shared subpage hero treatment for light mode. */
+html[data-theme="light"] .subpage-hero {
+  border-color: rgba(17, 17, 17, 0.12) !important;
+}
+
+html[data-theme="light"] .subpage-hero-bg {
+  background:
+    radial-gradient(circle at 75% 20%, rgba(17, 17, 17, 0.055), transparent 28%),
+    linear-gradient(145deg, #f8f7f2 0%, #eeede8 56%, #e7e6e0 100%) !important;
+}
+
+html[data-theme="light"] .subpage-hero-watermark {
+  color: rgba(17, 17, 17, 0.035) !important;
+}
+
+html[data-theme="light"] .subpage-hero [class*="border-white/"] {
+  border-color: rgba(17, 17, 17, 0.16) !important;
+}
+
+html[data-theme="light"] .subpage-hero [class*="bg-white/"] {
+  background-color: rgba(17, 17, 17, 0.035) !important;
+}

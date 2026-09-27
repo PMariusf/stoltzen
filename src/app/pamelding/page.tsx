@@ -25,9 +25,9 @@ function StatusBadge({ status }: { status: "closed" | "open" | "coming" }) {
 export default function RegistrationPage() {
   return (
     <main className="bg-[#080808] text-white">
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,0.09),transparent_24%),linear-gradient(145deg,#171717,#070707_60%)]" />
-        <div className="pointer-events-none absolute -right-8 top-28 hidden select-none text-[18vw] font-black leading-none tracking-[-0.09em] text-white/[0.025] lg:block">
+      <section className="subpage-hero relative overflow-hidden border-b border-white/10">
+        <div className="subpage-hero-bg absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(255,255,255,0.09),transparent_24%),linear-gradient(145deg,#171717,#070707_60%)]" />
+        <div className="subpage-hero-watermark pointer-events-none absolute -right-8 top-28 hidden select-none text-[18vw] font-black leading-none tracking-[-0.09em] text-white/[0.025] lg:block">
           {registration.nextYear}
         </div>
 
