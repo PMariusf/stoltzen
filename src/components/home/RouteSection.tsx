@@ -54,7 +54,7 @@ export default function RouteSection({ locale = "no" }: { locale?: Locale }) {
             <h2 className="section-title mt-4">
               {en ? "One direction. Up." : "Én retning. Opp."}
             </h2>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/62">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-white/72">
               {en
                 ? "From Fjellveien the route climbs relentlessly through the stone steps toward Sandvikspilen. Short on paper. Completely different when the clock starts."
                 : "Fra Fjellveien går det nesten bare én vei gjennom steintrappene mot Sandvikspilen. Kort på papiret. Noe helt annet når klokken starter."}

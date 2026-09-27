@@ -47,12 +47,12 @@ export default function Hero({
                     phase === "live" ? "animate-pulse bg-white" : "bg-white/45"
                   }`}
                 />
-                <span className="text-xs font-black uppercase tracking-[0.22em] text-white/75">
+                <span className="text-xs font-black uppercase tracking-[0.22em] text-white/85">
                   {content.eyebrow}
                 </span>
               </div>
 
-              <p className="mt-5 text-xs font-bold uppercase tracking-[0.3em] text-white/45 sm:text-sm">
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.3em] text-white/65 sm:text-sm">
                 {event.location} · {en ? event.dateLabelEn : event.dateLabel}
               </p>
 
@@ -62,7 +62,7 @@ export default function Hero({
                   : "801 trinn. 315 høydemeter. Én vei opp."}
               </h1>
 
-              <p className="mt-3 text-sm font-medium text-white/50">
+              <p className="mt-3 text-sm font-medium text-white/70">
                 {content.status}
               </p>
             </div>
@@ -103,13 +103,13 @@ export default function Hero({
               },
             ].map(({ label, record }) => (
               <div key={label} className="border border-white/10 bg-white/[0.025] px-5 py-4">
-                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/65">
                   {label}
                 </p>
                 <div className="mt-2 flex items-end justify-between gap-4">
                   <div>
-                    <p className="text-sm font-bold text-white/80">{record.name}</p>
-                    <p className="mt-1 text-xs text-white/35">{record.year}</p>
+                    <p className="text-sm font-bold text-white/90">{record.name}</p>
+                    <p className="mt-1 text-xs text-white/65">{record.year}</p>
                   </div>
                   <p className="text-3xl font-black tracking-[-0.06em]">{record.time}</p>
                 </div>

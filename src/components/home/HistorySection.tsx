@@ -47,7 +47,7 @@ export default function HistorySection({ locale = "no" }: { locale?: Locale }) {
                 <>Tiår med<br />samme bakke.</>
               )}
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/58">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72">
               {en
                 ? "Records, runners, photos and stories form a timeline from 1979 to today's race."
                 : "Rekorder, løpere, bilder og historier danner en tidslinje fra 1979 og frem til dagens løp."}
@@ -62,10 +62,10 @@ export default function HistorySection({ locale = "no" }: { locale?: Locale }) {
           {milestones.map((item) => (
             <article key={item.year} className="min-h-44 bg-[#141414] p-6">
               <p className="text-4xl font-black tracking-[-0.06em] text-white/90">{item.year}</p>
-              <p className="mt-8 text-xs font-black uppercase tracking-[0.16em] text-white/70">
+              <p className="mt-8 text-xs font-black uppercase tracking-[0.16em] text-white/82">
                 {item.title}
               </p>
-              <p className="mt-2 text-xs leading-5 text-white/38">{item.text}</p>
+              <p className="mt-2 text-xs leading-5 text-white/65">{item.text}</p>
             </article>
           ))}
         </div>

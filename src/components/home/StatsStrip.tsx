@@ -19,7 +19,7 @@ export default function StatsStrip({ locale = "no" }: { locale?: Locale }) {
             className="border-b border-r border-white/10 px-5 py-8 text-center last:border-r-0 lg:border-b-0 lg:py-11"
           >
             <div className="text-4xl font-black tracking-[-0.06em] sm:text-5xl lg:text-6xl">{stat.value}</div>
-            <div className="mt-2 text-[11px] font-bold uppercase tracking-[0.24em] text-white/40">{stat.label}</div>
+            <div className="mt-2 text-[11px] font-bold uppercase tracking-[0.24em] text-white/65">{stat.label}</div>
           </div>
         ))}
       </div>

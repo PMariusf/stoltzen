@@ -71,7 +71,7 @@ export default function WeekendSchedule({
               >
                 <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-4">
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-white/40">
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-white/65">
                       {day.day}
                     </p>
                     <p className="mt-1 text-2xl font-black tracking-[-0.04em]">
@@ -87,7 +87,7 @@ export default function WeekendSchedule({
                       key={label}
                       className="flex items-start justify-between gap-4 py-4 sm:items-center sm:gap-5"
                     >
-                      <span className="max-w-[58%] text-sm leading-5 text-white/50">{label}</span>
+                      <span className="max-w-[58%] text-sm leading-5 text-white/70">{label}</span>
                       <span className="shrink-0 text-right text-xs font-black uppercase tracking-[0.08em] text-white sm:text-sm">
                         {time}
                       </span>
@@ -109,11 +109,11 @@ export default function WeekendSchedule({
           </Link>
           <Link
             href={en ? "/en/practical-info" : "/praktisk-info"}
-            className="text-xs font-black uppercase tracking-[0.14em] text-white/40 transition hover:text-white"
+            className="text-xs font-black uppercase tracking-[0.14em] text-white/65 transition hover:text-white"
           >
             {en ? "Practical info" : "Praktisk info"}
           </Link>
-          <p className="w-full text-left text-xs leading-5 text-white/28 sm:ml-auto sm:w-auto sm:text-right">
+          <p className="w-full text-left text-xs leading-5 text-white/60 sm:ml-auto sm:w-auto sm:text-right">
             {en
               ? "Individual start times are shown in the start list."
               : "Personlig starttid finner du i startlisten."}

@@ -19,7 +19,7 @@ export default function AboutStoltzen({ locale = "no" }: { locale?: Locale }) {
         </div>
 
         <div className="max-w-2xl lg:pt-10">
-          <p className="text-lg leading-8 text-white/68 md:text-xl md:leading-9">
+          <p className="text-lg leading-8 text-white/78 md:text-xl md:leading-9">
             {en
               ? "From Fjellveien to Sandvikspilen, the challenge is simple to understand and hard to master. Find the rhythm, hold the pace and keep moving up."
               : "Fra Fjellveien til Sandvikspilen er utfordringen enkel å forstå og hard å mestre. Finn rytmen, hold farten og fortsett oppover."}
@@ -31,7 +31,7 @@ export default function AboutStoltzen({ locale = "no" }: { locale?: Locale }) {
             </Link>
             <Link
               href={en ? "/en/practical-info" : "/praktisk-info"}
-              className="text-xs font-black uppercase tracking-[0.14em] text-white/45 transition hover:text-white"
+              className="text-xs font-black uppercase tracking-[0.14em] text-white/65 transition hover:text-white"
             >
               {en ? "Practical info" : "Praktisk info"}
             </Link>

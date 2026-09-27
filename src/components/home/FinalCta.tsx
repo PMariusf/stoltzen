@@ -14,7 +14,7 @@ export default function FinalCta({ locale = "no" }: { locale?: Locale }) {
             <h2 className="mt-4 max-w-4xl text-[clamp(3rem,8vw,7rem)] font-black uppercase leading-[0.86] tracking-[-0.07em]">
               {en ? (<>Ready for<br />the climb?</>) : (<>Klar for<br />bakken?</>)}
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/50">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72">
               {en ? event.dateLabelEn : event.dateLabel} · Bergen
             </p>
           </div>

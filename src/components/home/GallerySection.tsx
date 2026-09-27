@@ -41,7 +41,7 @@ export default function GallerySection({ locale = "no" }: { locale?: Locale }) {
             <h2 className="section-title mt-4">
               {en ? "See the race. Feel the climb." : "Se løpet. Kjenn bakken."}
             </h2>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-white/48">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-white/70">
               {en
                 ? "Real moments from Stoltzekleiven Opp — the steps, the effort and the atmosphere around the race."
                 : "Ekte øyeblikk fra Stoltzekleiven Opp — trappene, innsatsen og stemningen rundt løpet."}

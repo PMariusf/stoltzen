@@ -12,9 +12,9 @@ html[data-theme="dark"] {
   --menu-bg: #0a0a0a;
   --footer-bg: #050505;
   --footer-fg: #ffffff;
-  --footer-muted: rgba(255, 255, 255, 0.55);
-  --footer-heading: rgba(255, 255, 255, 0.4);
-  --footer-link: rgba(255, 255, 255, 0.7);
+  --footer-muted: rgba(255, 255, 255, 0.72);
+  --footer-heading: rgba(255, 255, 255, 0.68);
+  --footer-link: rgba(255, 255, 255, 0.8);
 }
 
 html[data-theme="light"] {
@@ -28,9 +28,9 @@ html[data-theme="light"] {
   --menu-bg: #f8f7f2;
   --footer-bg: #ecebe6;
   --footer-fg: #111111;
-  --footer-muted: rgba(17, 17, 17, 0.58);
-  --footer-heading: rgba(17, 17, 17, 0.45);
-  --footer-link: rgba(17, 17, 17, 0.7);
+  --footer-muted: rgba(17, 17, 17, 0.7);
+  --footer-heading: rgba(17, 17, 17, 0.65);
+  --footer-link: rgba(17, 17, 17, 0.78);
 }
 
 @theme inline {
@@ -237,7 +237,7 @@ html[data-theme="light"] .nav-cta {
   font-weight: 900;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .section-title {
@@ -306,7 +306,7 @@ html[data-theme="light"] :is(
   .bg-\[\#141414\],
   .bg-\[\#151515\]
 ) [class*="text-white/"] {
-  color: rgba(17, 17, 17, 0.58) !important;
+  color: rgba(17, 17, 17, 0.7) !important;
 }
 
 html[data-theme="light"] :is(
@@ -353,7 +353,7 @@ html[data-theme="light"] :is(
 }
 
 html[data-theme="light"] .section-kicker {
-  color: rgba(17, 17, 17, 0.44);
+  color: rgba(17, 17, 17, 0.64);
 }
 
 html[data-theme="light"] .text-link {
