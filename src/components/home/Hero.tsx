@@ -38,21 +38,21 @@ export default function Hero({
       </div>
 
       <div className="border-t border-white/10 bg-[#070707]">
-        <div className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-10 md:px-10 md:py-12">
+        <div className="mx-auto max-w-7xl px-6 py-10 md:px-10 md:py-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <div className="inline-flex items-center gap-3 border border-white/15 bg-white/[0.03] px-4 py-2">
+              <div className="inline-flex items-center gap-3 border border-white/15 bg-white/3 px-4 py-2">
                 <span
                   className={`h-2 w-2 rounded-full ${
                     phase === "live" ? "animate-pulse bg-white" : "bg-white/45"
                   }`}
                 />
-                <span className="text-xs font-black uppercase tracking-[0.22em] text-white/85">
+                <span className="text-xs font-black uppercase tracking-[0.22em] text-white/75">
                   {content.eyebrow}
                 </span>
               </div>
 
-              <p className="mt-5 text-xs font-bold uppercase tracking-[0.3em] text-white/65 sm:text-sm">
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.3em] text-white/45 sm:text-sm">
                 {event.location} · {en ? event.dateLabelEn : event.dateLabel}
               </p>
 
@@ -62,36 +62,36 @@ export default function Hero({
                   : "801 trinn. 315 høydemeter. Én vei opp."}
               </h1>
 
-              <p className="mt-3 text-sm font-medium text-white/70">
+              <p className="mt-3 text-sm font-medium text-white/50">
                 {content.status}
               </p>
             </div>
 
-            <div className="grid w-full gap-2 sm:flex sm:w-auto sm:flex-wrap sm:gap-3">
+            <div className="flex flex-wrap gap-3">
               <Link
                 href={content.primaryHref}
-                className="inline-flex min-h-13 w-full items-center justify-center sm:min-h-14 sm:w-auto bg-white px-7 text-sm font-black uppercase tracking-[0.08em] text-black transition hover:bg-white/80"
+                className="inline-flex min-h-14 items-center justify-center bg-white px-7 text-sm font-black uppercase tracking-[0.08em] text-black transition hover:bg-white/80"
               >
                 {content.primaryLabel}
               </Link>
 
               <Link
                 href={latestResults}
-                className="inline-flex min-h-13 w-full items-center justify-center sm:min-h-14 sm:w-auto border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60 hover:bg-white hover:text-black"
+                className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60 hover:bg-white hover:text-black"
               >
                 {en ? "Results" : "Resultater"} {event.year}
               </Link>
 
               <Link
                 href={gallery}
-                className="inline-flex min-h-13 w-full items-center justify-center sm:min-h-14 sm:w-auto border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60"
+                className="inline-flex min-h-14 items-center justify-center border border-white/25 px-7 text-sm font-black uppercase tracking-[0.08em] text-white transition hover:border-white/60"
               >
                 {en ? "See photos" : "Se bilder"}
               </Link>
             </div>
           </div>
 
-          <div className="mt-7 grid gap-2 border-t border-white/10 pt-5 sm:mt-8 sm:gap-3 sm:pt-6 sm:grid-cols-2">
+          <div className="mt-8 grid gap-3 border-t border-white/10 pt-6 sm:grid-cols-2">
             {[
               {
                 label: en ? "Course record · men" : "Løyperekord · menn",
@@ -103,13 +103,13 @@ export default function Hero({
               },
             ].map(({ label, record }) => (
               <div key={label} className="border border-white/10 bg-white/[0.025] px-5 py-4">
-                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/65">
+                <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/35">
                   {label}
                 </p>
                 <div className="mt-2 flex items-end justify-between gap-4">
                   <div>
-                    <p className="text-sm font-bold text-white/90">{record.name}</p>
-                    <p className="mt-1 text-xs text-white/65">{record.year}</p>
+                    <p className="text-sm font-bold text-white/80">{record.name}</p>
+                    <p className="mt-1 text-xs text-white/35">{record.year}</p>
                   </div>
                   <p className="text-3xl font-black tracking-[-0.06em]">{record.time}</p>
                 </div>
