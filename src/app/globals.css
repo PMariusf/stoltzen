@@ -520,3 +520,33 @@ html[data-theme="light"] .statistics-dark-panel :where(a, button):focus-visible 
 html[data-theme="light"] :where(a, button, input, select, textarea, summary):focus-visible {
   outline-color: #9f4c00;
 }
+
+/* The interactive route illustration is intentionally dark in either theme. */
+html[data-theme="light"] .course-map-panel,
+html[data-theme="light"] .course-map-panel.bg-\\[\\#0a0f12\\] {
+  background-color: #0a0f12 !important;
+  color: #f8fafc !important;
+}
+html[data-theme="light"] .course-map-panel .bg-\\[\\#0c1316\\] {
+  background-color: #0c1316 !important;
+}
+html[data-theme="light"] .course-map-panel [class*="text-white/"] {
+  color: #d1d5db !important;
+}
+html[data-theme="light"] .course-map-panel [class*="border-white/"] {
+  border-color: rgba(255, 255, 255, 0.26) !important;
+}
+html[data-theme="light"] .course-map-panel [class*="bg-white/"] {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+html[data-theme="light"] .course-map-panel button[aria-pressed="true"] {
+  color: #111827 !important;
+  background-color: #fbbf24 !important;
+}
+html[data-theme="light"] .course-map-panel button[aria-pressed="true"] span {
+  color: #111827 !important;
+}
+html[data-theme="light"] .course-map-panel button:focus-visible,
+html[data-theme="light"] .course-map-panel a:focus-visible {
+  outline-color: #fbbf24;
+}
