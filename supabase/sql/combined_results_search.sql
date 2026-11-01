@@ -62,7 +62,26 @@ select
   null::integer as personal_best_year,
   null::integer as participation_count,
   'verified_2025'::text as result_source
-from public.verified_results_2025 v;
+from public.verified_results_2025 v
+union all
+select
+  -(2000000000 + v.id)::bigint as result_id,
+  null::bigint as runner_id,
+  null::bigint as legacy_id,
+  v.year::integer,
+  null::text as bib,
+  v.class_name::text,
+  v.club::text as club_original,
+  v.overall_place::integer as place_rank,
+  v.finish_time_text::text,
+  v.finish_time_seconds::integer,
+  v.name::text,
+  case when v.category = 'men' then 'Herrer'::text else 'Kvinner'::text end as gender_class,
+  null::text as personal_best_text,
+  null::integer as personal_best_year,
+  null::integer as participation_count,
+  'verified_historical'::text as result_source
+from public.verified_historical_results v;
 
 grant select on public.result_search_combined to anon, authenticated;
 
