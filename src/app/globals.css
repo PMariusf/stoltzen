@@ -521,6 +521,25 @@ html[data-theme="light"] :where(a, button, input, select, textarea, summary):foc
   outline-color: #9f4c00;
 }
 
+/* The page-level light-theme rule also matches the map's text-white class.
+   Override that inherited foreground at higher specificity. */
+html[data-theme="light"] body main .course-map-panel.text-white,
+html[data-theme="light"] body main .course-map-panel.always-dark-surface {
+  color: #f8fafc !important;
+}
+html[data-theme="light"] body main .course-map-panel :is(h3, h4, strong),
+html[data-theme="light"] body main .course-map-panel button:not([aria-pressed="true"]),
+html[data-theme="light"] body main .course-map-panel button:disabled {
+  color: #f8fafc !important;
+}
+html[data-theme="light"] body main .course-map-panel button[aria-pressed="true"],
+html[data-theme="light"] body main .course-map-panel button[aria-pressed="true"] span {
+  color: #111827 !important;
+}
+html[data-theme="light"] body main .course-map-panel button.bg-\\[\\#fbbf24\\] {
+  color: #111827 !important;
+}
+
 /* The interactive route illustration is intentionally dark in either theme. */
 html[data-theme="light"] .course-map-panel {
   background-color: #0a0f12 !important;
