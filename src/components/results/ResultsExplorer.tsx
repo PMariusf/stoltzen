@@ -330,36 +330,36 @@ export default function ResultsExplorer({
     <div className="border border-white/10 bg-white/[0.025] p-5 sm:p-7">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
         <div>
-          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/35">
+          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/75">
             {en ? "Live database" : "Tilkoblet database"}
           </p>
-          <p className="mt-2 text-sm text-white/55">
+          <p className="mt-2 text-sm text-white/75">
             {en
               ? "Supabase is connected. Historical results are being migrated in stages."
               : "Supabase er koblet til. Historiske resultater migreres inn trinnvis."}
           </p>
         </div>
-        <span className="border border-white/15 px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white/45">
+        <span className="border border-white/15 px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-white/75">
           {en ? "Migration preview" : "Migrering · testdata"}
         </span>
       </div>
 
       <div className="grid gap-3 lg:grid-cols-[1.4fr_0.65fr_0.8fr_0.8fr_0.8fr_auto]">
         <label className="block">
-          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/75">
             {en ? "Name or bib" : "Navn eller startnummer"}
           </span>
           <input
             value={query}
             onChange={(event) => { setPage(0); setQuery(event.target.value); }}
             placeholder={en ? "Search runner..." : "Søk etter løper..."}
-            className="min-h-13 w-full border border-white/15 bg-black/20 px-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-white/45"
+            className="min-h-13 w-full border border-white/15 bg-black/20 px-4 text-sm text-white outline-none transition placeholder:text-white/75 focus:border-white/45"
           />
         </label>
 
         {!fixedYear && (
           <label className="block">
-            <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+            <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/75">
               {en ? "Year" : "År"}
             </span>
             <select
@@ -384,7 +384,7 @@ export default function ResultsExplorer({
         )}
 
         <label className="block">
-          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/75">
             {en ? "Class" : "Klasse"}
           </span>
           <select
@@ -403,7 +403,7 @@ export default function ResultsExplorer({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/75">
             {en ? "Club" : "Klubb"}
           </span>
           <select
@@ -422,7 +422,7 @@ export default function ResultsExplorer({
         </label>
 
         <label className="block">
-          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/75">
             {en ? "Sort by" : "Sorter etter"}
           </span>
           <select
@@ -466,10 +466,10 @@ export default function ResultsExplorer({
       <div className="mt-7 border-t border-white/10 pt-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/30">
+            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/75">
               {en ? "Results" : "Resultater"}
             </p>
-            <p className="mt-2 text-sm text-white/55">
+            <p className="mt-2 text-sm text-white/75">
               {loading
                 ? en
                   ? "Loading results..."
@@ -499,7 +499,7 @@ export default function ResultsExplorer({
             <p className="font-black uppercase tracking-[-0.02em]">
               {en ? "Could not load results" : "Kunne ikke laste resultater"}
             </p>
-            <p className="mt-2 break-words text-sm leading-6 text-white/45">
+            <p className="mt-2 break-words text-sm leading-6 text-white/75">
               {configurationError ?? error}
             </p>
           </div>
@@ -517,7 +517,7 @@ export default function ResultsExplorer({
             <p className="text-lg font-black uppercase tracking-[-0.025em]">
               {en ? "No results found" : "Ingen resultater funnet"}
             </p>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-white/45">
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-white/75">
               {en
                 ? "Try another name, year, class or club. More historical results will appear as the archive migration continues."
                 : "Prøv et annet navn, år, klasse eller klubb. Flere historiske resultater kommer inn etter hvert som arkivet migreres."}
@@ -540,11 +540,11 @@ export default function ResultsExplorer({
                       {result.result_source !== "archive" && (
                         <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-amber-300">{en ? "Imported result · profile pending" : "Importert resultat · profil ikke koblet"}</span>
                       )}
-                      <p className="mt-1 text-xs text-white/50">{result.club_original ?? (en ? "No club" : "Ingen klubb")} · {result.class_name ?? result.gender_class ?? "—"}</p>
+                      <p className="mt-1 text-xs text-white/75">{result.club_original ?? (en ? "No club" : "Ingen klubb")} · {result.class_name ?? result.gender_class ?? "—"}</p>
                     </div>
                     <span className="shrink-0 text-xl font-black text-white">{result.finish_time_text ?? "—"}</span>
                   </div>
-                  <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-3 text-xs text-white/60">
+                  <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-3 text-xs text-white/75">
                     <span>{en ? "Year" : "År"}: {result.year}</span>
                     <span>{en ? "Place" : "Plass"}: {result.place_rank ?? "—"}</span>
                     <span>{en ? "Bib" : "Startnr."}: {result.bib ?? "—"}</span>
@@ -555,7 +555,7 @@ export default function ResultsExplorer({
             <div className="mt-6 hidden overflow-x-auto md:block">
               <table className="w-full min-w-[860px] border-collapse text-left text-sm">
                 <thead>
-                  <tr className="border-b border-white/10 text-[10px] font-black uppercase tracking-[0.18em] text-white/35">
+                  <tr className="border-b border-white/10 text-[10px] font-black uppercase tracking-[0.18em] text-white/75">
                     {!fixedYear && <th className="px-3 py-3">{en ? "Year" : "År"}</th>}
                     <th className="px-3 py-3">{en ? "Place" : "Plass"}</th>
                     <th className="px-3 py-3">{en ? "Runner" : "Løper"}</th>
@@ -572,7 +572,7 @@ export default function ResultsExplorer({
                       className="border-b border-white/10 text-white/75"
                     >
                       {!fixedYear && (
-                        <td className="px-3 py-4 text-white/45">{result.year}</td>
+                        <td className="px-3 py-4 text-white/75">{result.year}</td>
                       )}
                       <td className="px-3 py-4 font-black">
                         {result.place_rank ?? "—"}
@@ -589,17 +589,17 @@ export default function ResultsExplorer({
                               href={en ? `/en/profile/${result.legacy_id}` : `/profil/${result.legacy_id}`}
                               className="font-bold transition hover:text-white hover:underline hover:underline-offset-4"
                             >{result.name}</Link>
-                            <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-white/25">ID {result.legacy_id}</span>
+                            <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-white/75">ID {result.legacy_id}</span>
                           </>
                         )}
                       </td>
-                      <td className="px-3 py-4 text-white/45">
+                      <td className="px-3 py-4 text-white/75">
                         {result.bib ?? "—"}
                       </td>
-                      <td className="px-3 py-4 text-white/55">
+                      <td className="px-3 py-4 text-white/75">
                         {result.class_name ?? result.gender_class ?? "—"}
                       </td>
-                      <td className="px-3 py-4 text-white/55">
+                      <td className="px-3 py-4 text-white/75">
                         {result.club_original ?? "—"}
                       </td>
                       <td className="px-3 py-4 font-black">
@@ -612,7 +612,7 @@ export default function ResultsExplorer({
             </div>
 
             <nav aria-label={en ? "Results pages" : "Resultatsider"} className="mt-5 flex flex-wrap items-center justify-between gap-4">
-              <p className="text-xs text-white/45" aria-live="polite">
+              <p className="text-xs text-white/75" aria-live="polite">
                 {en
                   ? `Showing ${page * PAGE_SIZE + 1}–${page * PAGE_SIZE + rows.length} of ${totalCount} matches`
                   : `Viser ${page * PAGE_SIZE + 1}–${page * PAGE_SIZE + rows.length} av ${totalCount} treff`}
@@ -621,7 +621,7 @@ export default function ResultsExplorer({
                 <button type="button" disabled={page === 0} onClick={() => setPage((value) => Math.max(0, value - 1))} className="min-h-11 border border-white/20 px-4 text-xs font-bold disabled:cursor-not-allowed disabled:opacity-30">
                   {en ? "Previous" : "Forrige"}
                 </button>
-                <span className="text-xs text-white/55">
+                <span className="text-xs text-white/75">
                   {en ? "Page" : "Side"} {page + 1} / {Math.max(1, Math.ceil(totalCount / PAGE_SIZE))}
                 </span>
                 <button type="button" disabled={(page + 1) * PAGE_SIZE >= totalCount} onClick={() => setPage((value) => value + 1)} className="min-h-11 border border-white/20 px-4 text-xs font-bold disabled:cursor-not-allowed disabled:opacity-30">
