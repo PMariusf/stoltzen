@@ -11,8 +11,9 @@ type ResultsExplorerProps = {
 
 type ResultSearchRow = {
   result_id: number;
-  runner_id: number;
-  legacy_id: number;
+  runner_id: number | null;
+  legacy_id: number | null;
+  result_source: "archive" | "verified_2026";
   year: number;
   bib: string | null;
   class_name: string | null;
@@ -246,7 +247,7 @@ export default function ResultsExplorer({
       try {
         const params = new URLSearchParams({
           select:
-            "result_id,runner_id,legacy_id,year,bib,class_name,club_original,place_rank,finish_time_text,finish_time_seconds,name,gender_class,personal_best_text,personal_best_year,participation_count",
+            "result_id,runner_id,legacy_id,year,bib,class_name,club_original,place_rank,finish_time_text,finish_time_seconds,name,gender_class,personal_best_text,personal_best_year,participation_count,result_source",
           order: sortOrders[sort],
           limit: String(PAGE_SIZE),
           offset: String(page * PAGE_SIZE),
@@ -273,7 +274,7 @@ export default function ResultsExplorer({
         }
 
         const response = await fetch(
-          `${supabaseUrl}/rest/v1/result_search?${params.toString()}`,
+          `${supabaseUrl}/rest/v1/result_search_combined?${params.toString()}`,
           {
             headers: getHeaders(true),
             signal: controller.signal,
@@ -529,9 +530,16 @@ export default function ResultsExplorer({
                 <article key={result.result_id} className="border border-white/15 bg-white/[0.035] p-4">
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <Link href={en ? `/en/profile/${result.legacy_id}` : `/profil/${result.legacy_id}`} className="text-base font-bold text-white underline-offset-4 hover:underline">
-                        {result.name}
-                      </Link>
+                      {result.legacy_id === null ? (
+                        <span className="text-base font-bold text-white">{result.name}</span>
+                      ) : (
+                        <Link href={en ? `/en/profile/${result.legacy_id}` : `/profil/${result.legacy_id}`} className="text-base font-bold text-white underline-offset-4 hover:underline">
+                          {result.name}
+                        </Link>
+                      )}
+                      {result.result_source === "verified_2026" && (
+                        <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-amber-300">{en ? "Verified 2026 · profile pending" : "Bekreftet 2026 · profil ikke koblet"}</span>
+                      )}
                       <p className="mt-1 text-xs text-white/50">{result.club_original ?? (en ? "No club" : "Ingen klubb")} · {result.class_name ?? result.gender_class ?? "—"}</p>
                     </div>
                     <span className="shrink-0 text-xl font-black text-white">{result.finish_time_text ?? "—"}</span>
@@ -570,19 +578,20 @@ export default function ResultsExplorer({
                         {result.place_rank ?? "—"}
                       </td>
                       <td className="px-3 py-4">
-                        <Link
-                          href={
-                            en
-                              ? `/en/profile/${result.legacy_id}`
-                              : `/profil/${result.legacy_id}`
-                          }
-                          className="font-bold transition hover:text-white hover:underline hover:underline-offset-4"
-                        >
-                          {result.name}
-                        </Link>
-                        <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-white/25">
-                          ID {result.legacy_id}
-                        </span>
+                        {result.legacy_id === null ? (
+                          <>
+                            <span className="font-bold">{result.name}</span>
+                            <span className="mt-1 block text-[10px] uppercase tracking-[0.12em] text-amber-300/80">{en ? "Verified 2026 · no profile link" : "Bekreftet 2026 · uten profilkobling"}</span>
+                          </>
+                        ) : (
+                          <>
+                            <Link
+                              href={en ? `/en/profile/${result.legacy_id}` : `/profil/${result.legacy_id}`}
+                              className="font-bold transition hover:text-white hover:underline hover:underline-offset-4"
+                            >{result.name}</Link>
+                            <span className="mt-1 block text-[10px] uppercase tracking-[0.14em] text-white/25">ID {result.legacy_id}</span>
+                          </>
+                        )}
                       </td>
                       <td className="px-3 py-4 text-white/45">
                         {result.bib ?? "—"}
