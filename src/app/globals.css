@@ -381,20 +381,28 @@ html[data-theme="light"] .text-link:hover {
 
 
 /*
- * Keep decorative years/step counts in the upper-right corner of subpage heroes,
+ * Place decorative years/step counts in the lower-right of subpage heroes,
  * clear of the headline and fully inside the viewport. Shared by results,
  * history, race and registration pages in both themes.
  */
 .subpage-hero-watermark {
-  top: 1.5rem !important;
-  right: clamp(1.5rem, 4vw, 4.5rem) !important;
+  top: auto !important;
+  bottom: clamp(1.5rem, 4vw, 4rem) !important;
+  right: clamp(2rem, 5vw, 5rem) !important;
   left: auto !important;
-  font-size: clamp(4.5rem, 8vw, 7.5rem) !important;
+  font-size: clamp(4rem, 6.5vw, 6.5rem) !important;
   line-height: 1 !important;
   letter-spacing: -0.065em !important;
   white-space: nowrap;
-  max-width: calc(100% - 3rem);
+  max-width: 32vw;
   text-align: right;
+}
+
+/* Large decorative numbers need their own space; avoid text collisions on laptops. */
+@media (max-width: 1279px) {
+  .subpage-hero-watermark {
+    display: none !important;
+  }
 }
 
 /* Shared subpage hero treatment for light mode. */
