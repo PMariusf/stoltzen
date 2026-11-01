@@ -18,8 +18,8 @@ export default function Results2026Page() {
             Stoltzen 2026
           </h1>
           <p className="mt-7 max-w-2xl text-xl leading-8 text-white/58">
-            Search the 2026 start and result data. The official database will
-            appear here once the existing data is ready for import.
+            Explore verified 2026 podium results. The remaining annual results
+            will be linked to the historical archive as runner IDs are verified.
           </p>
 
           <Link href="/en/results" className="text-link mt-8 inline-flex">
