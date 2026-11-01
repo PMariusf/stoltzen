@@ -6,7 +6,7 @@ create table if not exists public.verified_2026_runner_matches (
     references public.verified_results_2026(id) on delete cascade,
   runner_id bigint not null unique
     references public.runners(id) on delete restrict,
-  evidence_url text not null,
+  evidence_url text not null check (evidence_url ~ '^https://'),
   verified_at timestamptz not null default now()
 );
 
