@@ -522,12 +522,11 @@ html[data-theme="light"] :where(a, button, input, select, textarea, summary):foc
 }
 
 /* The interactive route illustration is intentionally dark in either theme. */
-html[data-theme="light"] .course-map-panel,
-html[data-theme="light"] .course-map-panel.bg-\\[\\#0a0f12\\] {
+html[data-theme="light"] .course-map-panel {
   background-color: #0a0f12 !important;
   color: #f8fafc !important;
 }
-html[data-theme="light"] .course-map-panel .bg-\\[\\#0c1316\\] {
+html[data-theme="light"] .course-map-panel [class*="bg-[#0c1316]"] {
   background-color: #0c1316 !important;
 }
 html[data-theme="light"] .course-map-panel [class*="text-white/"] {
