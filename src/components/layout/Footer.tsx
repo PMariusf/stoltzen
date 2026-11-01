@@ -68,7 +68,15 @@ export default function Footer() {
 
       <div className="footer-bottom border-t px-5 py-5 text-center text-xs uppercase tracking-[0.18em] sm:px-6">
         <p>Stoltzekleiven Opp · Bergen · Since 1979</p>
-        <p className="mt-3 normal-case tracking-normal opacity-70">
+        <p className="mt-3 normal-case tracking-normal">
+          <Link
+            href={en ? "/en/accessibility" : "/tilgjengelighet"}
+            className="inline-flex min-h-11 items-center font-semibold underline underline-offset-4 hover:opacity-80"
+          >
+            {en ? "Accessibility" : "Tilgjengelighet"}
+          </Link>
+        </p>
+        <p className="mt-2 normal-case tracking-normal opacity-70">
           {en ? "Website by Varegg Media" : "Nettside laget av Varegg Media"}
         </p>
       </div>
