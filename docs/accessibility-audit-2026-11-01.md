@@ -70,3 +70,29 @@ testes nærmere. Oppdager du en tilgjengelighetsbarriere, kan du gi
 beskjed til arrangøren via den offisielle kontaktinformasjonen.»
 
 Publisering krever bekreftet kontaktkanal. Ikke oppgi fiktiv e-postadresse.
+
+## WCAG-kodekontroll, oppfølging 1. november 2026
+
+Referanse: WCAG 2.2 AA som kvalitetsmål, men gjeldende norsk minimum for
+private nettløsninger er WCAG 2.0 A/AA med forskriftens unntak.
+Kilde: https://lovdata.no/nav/forskrift/2013-06-21-732 og
+https://www.w3.org/TR/WCAG22/
+
+| Kriterium | Vurdering | Tiltak |
+|---|---|---|
+| 1.4.3 Kontrast (AA) | Bekreftet risiko/avvik i enkelte etiketter | 23 forekomster av svært svak `text-white/25`–`text-white/60` i ResultsExplorer økt til `text-white/75`. Gjenværende sider må måles. |
+| 2.4.1 Hoppe over blokker (A) | Tidligere mangel | «Hopp til hovedinnhold» lagt inn. Må tastaturtestes. |
+| 2.4.7 Synlig fokus (AA i WCAG 2.1/2.2) | Forbedret | Felles fokusring, mørkere ring i lys modus. |
+| 2.4.4 Lenkeformål (A) | Delvis vurdert | Profil-lenker, menytekst og CTA virker beskrivende. Test gjenstår. |
+| 3.1.1 Sidens språk (A) | Mulig avvik på engelske sider | `html lang="nb"` også for engelske ruter; innholdet er markert med `div lang="en"`. Fiks krever layoutgjennomgang. |
+| 4.1.2 Navn, rolle, verdi (A) | Delvis gjennomgått | Native knapper, labels og `aria-pressed`; mobilmeny/tema må testes med skjermleser. |
+| 1.4.10 Reflow (AA WCAG 2.1/2.2) | Ikke verifisert | Test 320 CSS px / 400 % zoom. |
+| 2.5.8 Målstørrelse (AA WCAG 2.2) | Ikke verifisert | Test interaktive elementer / språkvalg. |
+
+En referanseberegning for hvit tekst med opacity 0,25 over #0b0b0b
+gir ca. 2,15:1, mot ca. 11,05:1 ved opacity 0,75.
+Dette er ikke et bevis på hver enkelt renders kontrast fordi flere
+elementer har andre bakgrunnsfarger eller temaoverstyringer.
+
+**Testbegrensning:** Ikke Lighthouse-, axe-, VoiceOver- eller browserautomasjonstestet.
+Ingen samlet WCAG-score eller full AA-samsvar er dokumentert.
