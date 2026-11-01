@@ -12,15 +12,16 @@ Oppdater `.env.local` lokalt (ikke sjekk nøklene inn i Git):
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` til å lese og forhåndskontrollere
 - `SUPABASE_SECRET_KEY` eller `SUPABASE_SERVICE_ROLE_KEY` **kun lokalt** når du skal skrive
 
-Eksisterende `verified_results_2025` og `verified_results_2026` skal være
-opprettet i prosjektet. Bruk kun offisielle eller kontrollerbare kilder.
+Tabellene `verified_results_2025`, `verified_results_2026` og
+`verified_historical_results` skal være opprettet i prosjektet.
+For år 1979–2024 brukes sistnevnte, for nyere år beholdes årstabellene. Bruk kun offisielle eller kontrollerbare kilder.
 
 ## 1. Registrer et gjennomgått parti
 
 Kopier `data/imports/verified-batch.example.json` til en ny lokal JSON-fil.
 Fyll ut én post per resultat med:
 
-- year: 2025 eller 2026
+- year: 1979–2026 (for eldre år må resultatet være kildekontrollert)
 - category: `men` eller `women`
 - overall_place: plassering i den valgte kjønnskategorien
 - name, class_name og finish_time_text (mm:ss)
@@ -38,6 +39,7 @@ npm run import:verified -- --input data/imports/verified-batch.example.json
 ```
 
 Skriptet leser eksisterende rader fra Supabase og viser:
+- eksakte historiske duplikater som allerede finnes i `result_search` (for 1979–2024)
 - allerede registrerte identiske poster
 - nye poster
 - konflikter (samme år/kjønn/plass, men ulike resultater)
@@ -52,7 +54,7 @@ Når kilden, alle navn, klasser, tider og plasseringer er kontrollert:
 npm run import:verified -- --input path/to/reviewed-batch.json --apply
 ```
 
-Skriptet skriver kun nye rader og overskriver aldri eksisterende.
+Skriptet skriver kun nye rader og overskriver aldri eksisterende. Den historiske duplikatkontrollen bruker navn, år og sluttid; den kan ikke bevise løperidentitet.
 Unik databasebegrensning på (year, category, overall_place) hindrer
 duplikater også hvis to importer kjøres samtidig. Importen er ikke en
 transaksjon på tvers av år: ved en feil sjekker du databasen og kjører
