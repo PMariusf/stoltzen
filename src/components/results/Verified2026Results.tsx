@@ -47,8 +47,8 @@ export default async function Verified2026Results({ locale = "no" }: { locale?: 
         </h2>
         <p className="mt-4 max-w-3xl text-sm leading-6 text-white/55">
           {en
-            ? "A selected top-10 list for women and men. Imported into a separate table while historical athlete IDs are being checked. Not the full field."
-            : "Et utvalg med topp 10 for kvinner og menn. Importert til en egen tabell mens historiske løper-ID-er kontrolleres. Ikke en komplett resultatliste."}
+            ? "A selected top-20 list for women and men. Imported into a separate table while historical athlete IDs are being checked. Not the full field."
+            : "Et utvalg med topp 20 for kvinner og menn. Importert til en egen tabell mens historiske løper-ID-er kontrolleres. Ikke en komplett resultatliste."}
         </p>
         {error ? (
           <p role="alert" className="mt-7 border border-white/20 p-5 text-sm text-white/70">
