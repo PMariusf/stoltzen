@@ -471,3 +471,9 @@ html[data-theme="light"] .always-dark-surface .text-link:hover {
 #main-content:focus {
   outline: none;
 }
+
+/* The brighter orange is clear on dark backgrounds, but lacks 3:1 against
+   white. Use a darker focus ring in light mode. */
+html[data-theme="light"] :where(a, button, input, select, textarea, summary):focus-visible {
+  outline-color: #9f4c00;
+}
