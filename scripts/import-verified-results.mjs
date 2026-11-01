@@ -114,7 +114,7 @@ async function main() {
   if (!/^https:\/\/[^/]+\.supabase\.co$/.test(base)) throw new Error("Unexpected Supabase URL");
   if (options.apply && !secret) throw new Error("--apply needs SUPABASE_SECRET_KEY or SUPABASE_SERVICE_ROLE_KEY (never NEXT_PUBLIC_)");
 
-  const grouped = Object.groupBy(rows, row => row.year);
+  const grouped = rows.reduce((acc, row) => { (acc[row.year] ??= []).push(row); return acc; }, {});
   const newRows = [];
   let unchanged = 0;
   const conflicts = [];
