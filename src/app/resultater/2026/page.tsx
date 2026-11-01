@@ -19,8 +19,8 @@ export default function Results2026Page() {
             Stoltzen 2026
           </h1>
           <p className="mt-7 max-w-2xl text-xl leading-8 text-white/58">
-            Søk i start- og resultatdata for 2026. Selve databasen kobles inn
-            når de offisielle dataene er klare for import.
+            Se bekreftede pallplasseringer fra 2026. Vi jobber med å koble
+            resten av årsresultatene til det historiske arkivet.
           </p>
 
           <Link href="/resultater" className="text-link mt-8 inline-flex">
