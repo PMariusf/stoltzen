@@ -9,7 +9,8 @@
     "lint": "eslint",
     "import:stoltzen": "node scripts/import-stoltzen.mjs",
     "import:stoltzen:sample": "node scripts/import-stoltzen.mjs --letters A --limit 25",
-    "import:stoltzen:supabase": "node scripts/import-stoltzen-supabase.mjs"
+    "import:stoltzen:supabase": "node scripts/import-stoltzen-supabase.mjs",
+    "import:verified": "node scripts/import-verified-results.mjs"
   },
   "dependencies": {
     "next": "16.3.6",
