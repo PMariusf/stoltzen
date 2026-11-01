@@ -13,7 +13,7 @@ type ResultSearchRow = {
   result_id: number;
   runner_id: number | null;
   legacy_id: number | null;
-  result_source: "archive" | "verified_2026" | "verified_2025";
+  result_source: "archive" | "verified_2026" | "verified_2025" | "verified_historical";
   year: number;
   bib: string | null;
   class_name: string | null;
