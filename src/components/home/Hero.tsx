@@ -25,8 +25,8 @@ export default function Hero({
             src="/images/hero/Stoltzen-hero.png"
             alt={
               en
-                ? "Stoltzekleiven Opp with Varegg logo, runners, course records and anniversary graphics"
-                : "Stoltzekleiven Opp med Varegg-logo, løpere, rekordtider og jubileumsgrafikk"
+                ? "Stoltzekleiven Opp banner with Varegg logo, men's and women's course records and 40-year anniversary emblem"
+                : "Stoltzekleiven Opp-banner med Varegg-logo, løyperekorder for menn og kvinner og 40-årsjubileum"
             }
             width={2172}
             height={724}
