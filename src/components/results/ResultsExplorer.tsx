@@ -13,7 +13,7 @@ type ResultSearchRow = {
   result_id: number;
   runner_id: number | null;
   legacy_id: number | null;
-  result_source: "archive" | "verified_2026";
+  result_source: "archive" | "verified_2026" | "verified_2025";
   year: number;
   bib: string | null;
   class_name: string | null;
@@ -537,8 +537,8 @@ export default function ResultsExplorer({
                           {result.name}
                         </Link>
                       )}
-                      {result.result_source === "verified_2026" && (
-                        <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-amber-300">{en ? "Verified 2026 · profile pending" : "Bekreftet 2026 · profil ikke koblet"}</span>
+                      {result.result_source !== "archive" && (
+                        <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-amber-300">{en ? "Imported result · profile pending" : "Importert resultat · profil ikke koblet"}</span>
                       )}
                       <p className="mt-1 text-xs text-white/50">{result.club_original ?? (en ? "No club" : "Ingen klubb")} · {result.class_name ?? result.gender_class ?? "—"}</p>
                     </div>
@@ -581,7 +581,7 @@ export default function ResultsExplorer({
                         {result.legacy_id === null ? (
                           <>
                             <span className="font-bold">{result.name}</span>
-                            <span className="mt-1 block text-[10px] uppercase tracking-[0.12em] text-amber-300/80">{en ? "Verified 2026 · no profile link" : "Bekreftet 2026 · uten profilkobling"}</span>
+                            <span className="mt-1 block text-[10px] uppercase tracking-[0.12em] text-amber-300/80">{en ? "Imported result · no profile link" : "Importert resultat · uten profilkobling"}</span>
                           </>
                         ) : (
                           <>
