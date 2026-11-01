@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import InteractiveCourse from "@/components/race/InteractiveCourse";
+import MeasuredCourseProfile from "@/components/race/MeasuredCourseProfile";
 
 export const metadata: Metadata = {
   title: "Løpet",
@@ -157,6 +158,8 @@ export default function RacePage() {
           <InteractiveCourse locale="no" />
         </div>
       </section>
+
+      <MeasuredCourseProfile locale="no" />
 
       <section className="bg-[#e9e8e3] text-black">
         <div className="mx-auto max-w-7xl px-6 py-24 md:px-10 lg:py-32">
