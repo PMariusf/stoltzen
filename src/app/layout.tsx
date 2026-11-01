@@ -49,8 +49,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-screen bg-background text-foreground font-sans">
+        <a href="#main-content" className="skip-to-content">Hopp til hovedinnhold / Skip to main content</a>
         <Navbar />
-        {children}
+        <div id="main-content" tabIndex={-1}>{children}</div>
         <Footer />
       </body>
     </html>
