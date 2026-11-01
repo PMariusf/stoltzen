@@ -445,3 +445,29 @@ html[data-theme="light"] .always-dark-surface .text-link {
 html[data-theme="light"] .always-dark-surface .text-link:hover {
   color: #ffffff !important;
 }
+
+/* Accessible keyboard skip link and prominent focus indicators. */
+.skip-to-content {
+  position: fixed;
+  z-index: 1000;
+  top: 0.75rem;
+  left: 0.75rem;
+  transform: translateY(-200%);
+  padding: 0.75rem 1rem;
+  background: #fff;
+  color: #111;
+  border: 3px solid #d97706;
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-decoration: underline;
+}
+.skip-to-content:focus-visible {
+  transform: translateY(0);
+}
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid #e88a1d;
+  outline-offset: 3px;
+}
+#main-content:focus {
+  outline: none;
+}
