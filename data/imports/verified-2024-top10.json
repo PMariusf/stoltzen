@@ -1,0 +1,205 @@
+{
+  "source_note": "Kondis published ranking, 2024-09-28/29. Other aggregators differ by 1 second for certain entries. Do not mix sources within this batch.",
+  "rows": [
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 1,
+      "name": "Thorbjørn Ludvigsen",
+      "club": "Team Drevelin",
+      "class_name": "Menn 35-39 år",
+      "finish_time_text": "08:11",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 2,
+      "name": "Callum Smith",
+      "club": "Team Drevelin",
+      "class_name": "Menn 18-34 år",
+      "finish_time_text": "08:39",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 3,
+      "name": "Joel Dyrhovden",
+      "club": "Samnanger IL",
+      "class_name": "Menn 35-39 år",
+      "finish_time_text": "08:55",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 4,
+      "name": "Håvard Klakegg",
+      "club": "Jølster IL",
+      "class_name": "Menn 18-34 år",
+      "finish_time_text": "09:02",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 5,
+      "name": "Filip Eidsheim",
+      "club": "Sønnesyn Famil",
+      "class_name": "Menn 18-34 år",
+      "finish_time_text": "09:07",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 6,
+      "name": "Mark Purkis",
+      "club": "Varegg IL",
+      "class_name": "Menn 18-34 år",
+      "finish_time_text": "09:07",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 7,
+      "name": "Anders Sommer",
+      "club": "Varegg IL",
+      "class_name": "Menn 18-34 år",
+      "finish_time_text": "09:09",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 8,
+      "name": "Anders Johnny Kjærevik",
+      "club": "AJK Airlines",
+      "class_name": "Menn 35-39 år",
+      "finish_time_text": "09:13",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 9,
+      "name": "Tor Naustdal Helgheim",
+      "club": "Equinor Bergen BIL",
+      "class_name": "Menn 18-34 år",
+      "finish_time_text": "09:19",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "men",
+      "overall_place": 10,
+      "name": "Espen Roll Karlsen",
+      "club": "Nordea Bank ASA",
+      "class_name": "Menn 18-34 år",
+      "finish_time_text": "09:24",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 1,
+      "name": "Emma Julie Dyrhovden",
+      "club": "Framo BIL",
+      "class_name": "Kvinner 18-34 år",
+      "finish_time_text": "10:01",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 2,
+      "name": "Tine Alfstad Olsen",
+      "club": "TIF Viking",
+      "class_name": "Kvinner 18-34 år",
+      "finish_time_text": "10:42",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 3,
+      "name": "Anita Iversen Lilleskare",
+      "club": "Bergen Løpeklubb",
+      "class_name": "Kvinner 45-49 år",
+      "finish_time_text": "10:48",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 4,
+      "name": "Aurora Veen Torkildsen",
+      "club": "Åsane Cykle Klubb",
+      "class_name": "Jenter 12-14 år",
+      "finish_time_text": "11:08",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 5,
+      "name": "Stine Borgli",
+      "club": "Archer Løpe og Sykkelklubb",
+      "class_name": "Kvinner 18-34 år",
+      "finish_time_text": "11:20",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 6,
+      "name": "Ine-Therese Binner",
+      "club": "Subsea7",
+      "class_name": "Kvinner 35-39 år",
+      "finish_time_text": "11:25",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 7,
+      "name": "Iga Kopiec",
+      "club": "BFG Bergen",
+      "class_name": "Kvinner 18-34 år",
+      "finish_time_text": "11:28",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 8,
+      "name": "Mari Fosse Vaksdal",
+      "club": null,
+      "class_name": "Kvinner 18-34 år",
+      "finish_time_text": "11:29",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 9,
+      "name": "Leni Økland-Lihaug",
+      "club": "Bergen Løpeklubb",
+      "class_name": "Kvinner 35-39 år",
+      "finish_time_text": "11:29",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    },
+    {
+      "year": 2024,
+      "category": "women",
+      "overall_place": 10,
+      "name": "Cathrine Horn Sommersten",
+      "club": null,
+      "class_name": "Kvinner 18-34 år",
+      "finish_time_text": "11:35",
+      "source_url": "https://www.kondis.no/resultater/resultater-stoltzekleiven-opp-2024/1462137"
+    }
+  ]
+}
