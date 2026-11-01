@@ -19,6 +19,7 @@ type StatisticsData = {
   fastest: ArchiveResult[];
   frequent: { legacyId: number; name: string; count: number }[];
   limited: boolean;
+  classes: { name: string; count: number; fastest: ArchiveResult | null }[];
 };
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -42,9 +43,18 @@ export const getArchiveStatistics = cache(async (): Promise<StatisticsData> => {
   const totalHeader = Number(response.headers.get("content-range")?.split("/")[1]);
   const limited = Number.isFinite(totalHeader) && totalHeader > results.length;
   const yearsMap = new Map<number, number>();
+  const classMap = new Map<string, { name: string; count: number; fastest: ArchiveResult | null }>();
   const runners = new Map<number, { legacyId: number; name: string; count: number }>();
   for (const result of results) {
     yearsMap.set(result.year, (yearsMap.get(result.year) ?? 0) + 1);
+    const className = result.class_name || result.gender_class || "Ukjent";
+    const currentClass = classMap.get(className) ?? { name: className, count: 0, fastest: null };
+    currentClass.count++;
+    if (result.finish_time_seconds !== null && result.finish_time_seconds > 0 &&
+      (!currentClass.fastest || (currentClass.fastest.finish_time_seconds ?? Infinity) > result.finish_time_seconds)) {
+      currentClass.fastest = result;
+    }
+    classMap.set(className, currentClass);
     const previous = runners.get(result.legacy_id);
     runners.set(result.legacy_id, {
       legacyId: result.legacy_id,
@@ -61,6 +71,7 @@ export const getArchiveStatistics = cache(async (): Promise<StatisticsData> => {
       .sort((a, b) => a.finish_time_seconds! - b.finish_time_seconds! || a.year - b.year).slice(0, 10),
     frequent: [...runners.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "nb")).slice(0, 10),
     limited,
+    classes: [...classMap.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "nb")),
   };
 });
 
