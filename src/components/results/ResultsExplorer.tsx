@@ -83,6 +83,8 @@ export default function ResultsExplorer({
       : "Supabase er ikke konfigurert for dette miljøet.";
 
   const [query, setQuery] = useState("");
+  const [urlReady, setUrlReady] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [year, setYear] = useState(fixedYear ? String(fixedYear) : "all");
   const [className, setClassName] = useState("all");
   const [club, setClub] = useState("all");
@@ -97,6 +99,49 @@ export default function ResultsExplorer({
   const [error, setError] = useState<string | null>(null);
 
   const selectedYear = fixedYear ? String(fixedYear) : year;
+
+  useEffect(() => {
+    function restoreFilters() {
+      const params = new URLSearchParams(window.location.search);
+      const requestedYear = params.get("year");
+      const requestedSort = params.get("sort");
+      const requestedPage = Number(params.get("page") ?? "1");
+      setQuery((params.get("q") ?? "").slice(0, 120));
+      if (!fixedYear) setYear(requestedYear && /^\\d{4}$/.test(requestedYear) ? requestedYear : "all");
+      setClassName(params.get("class") || "all");
+      setClub(params.get("club") || "all");
+      setSort(requestedSort && Object.prototype.hasOwnProperty.call(sortOrders, requestedSort) ? requestedSort as SortMode : "newest");
+      setPage(Number.isSafeInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage - 1, 9999) : 0);
+    }
+    restoreFilters();
+    setUrlReady(true);
+    window.addEventListener("popstate", restoreFilters);
+    return () => window.removeEventListener("popstate", restoreFilters);
+  }, [fixedYear]);
+
+  useEffect(() => {
+    if (!urlReady) return;
+    const url = new URL(window.location.href);
+    const params = url.searchParams;
+    for (const key of ["q", "year", "class", "club", "sort", "page"]) params.delete(key);
+    if (query.trim()) params.set("q", query.trim());
+    if (!fixedYear && year !== "all") params.set("year", year);
+    if (className !== "all") params.set("class", className);
+    if (club !== "all") params.set("club", club);
+    if (sort !== "newest") params.set("sort", sort);
+    if (page > 0) params.set("page", String(page + 1));
+    window.history.replaceState(window.history.state, "", url.pathname + url.search + url.hash);
+    setCopied(false);
+  }, [urlReady, query, year, className, club, sort, page, fixedYear]);
+
+  async function copySearchLink() {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
+  }
 
   const classOptions = useMemo(
     () =>
@@ -191,7 +236,7 @@ export default function ResultsExplorer({
   }, [selectedYear]);
 
   useEffect(() => {
-    if (!supabaseUrl || !supabaseKey) return;
+    if (!supabaseUrl || !supabaseKey || !urlReady) return;
 
     const controller = new AbortController();
     const timer = window.setTimeout(async () => {
@@ -271,7 +316,7 @@ export default function ResultsExplorer({
       window.clearTimeout(timer);
       controller.abort();
     };
-  }, [query, selectedYear, className, club, en, page, sort]);
+  }, [query, selectedYear, className, club, en, page, sort, urlReady]);
 
   const selectedYearLabel =
     selectedYear === "all"
@@ -411,6 +456,12 @@ export default function ResultsExplorer({
         </div>
       </div>
 
+      <div className="mt-4 flex justify-end">
+        <button type="button" onClick={copySearchLink} className="min-h-11 border border-white/15 px-4 text-xs font-bold uppercase tracking-wider text-white/75 transition hover:border-white/50 hover:text-white" aria-live="polite">
+          {copied ? (en ? "Link copied" : "Lenke kopiert") : (en ? "Copy search link" : "Kopier søkelenke")}
+        </button>
+      </div>
+
       <div className="mt-7 border-t border-white/10 pt-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
@@ -473,7 +524,27 @@ export default function ResultsExplorer({
           </div>
         ) : (
           <>
-            <div className="mt-6 overflow-x-auto">
+            <div className="mt-6 grid gap-3 md:hidden">
+              {rows.map((result) => (
+                <article key={result.result_id} className="border border-white/15 bg-white/[0.035] p-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <Link href={en ? `/en/profile/${result.legacy_id}` : `/profil/${result.legacy_id}`} className="text-base font-bold text-white underline-offset-4 hover:underline">
+                        {result.name}
+                      </Link>
+                      <p className="mt-1 text-xs text-white/50">{result.club_original ?? (en ? "No club" : "Ingen klubb")} · {result.class_name ?? result.gender_class ?? "—"}</p>
+                    </div>
+                    <span className="shrink-0 text-xl font-black text-white">{result.finish_time_text ?? "—"}</span>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-3 text-xs text-white/60">
+                    <span>{en ? "Year" : "År"}: {result.year}</span>
+                    <span>{en ? "Place" : "Plass"}: {result.place_rank ?? "—"}</span>
+                    <span>{en ? "Bib" : "Startnr."}: {result.bib ?? "—"}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="mt-6 hidden overflow-x-auto md:block">
               <table className="w-full min-w-[860px] border-collapse text-left text-sm">
                 <thead>
                   <tr className="border-b border-white/10 text-[10px] font-black uppercase tracking-[0.18em] text-white/35">
