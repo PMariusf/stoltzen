@@ -5,7 +5,12 @@
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
-const TABLES = { 2025: "verified_results_2025", 2026: "verified_results_2026" };
+function tableForYear(year) {
+  if (year >= 1979 && year <= 2024) return "verified_historical_results";
+  if (year === 2025) return "verified_results_2025";
+  if (year === 2026) return "verified_results_2026";
+  throw new Error(`Unsupported year: ${year}`);
+}
 const CATEGORIES = new Set(["men", "women"]);
 const REQUIRED = ["year", "category", "overall_place", "name", "class_name", "finish_time_text", "source_url"];
 const MAX_BATCH = 200;
@@ -46,7 +51,7 @@ function normalize(row, index) {
   }
   const year = Number(row.year);
   const place = Number(row.overall_place);
-  if (!Object.hasOwn(TABLES, year)) throw new Error(`Row ${index}: unsupported year ${year}`);
+  if (!Number.isSafeInteger(year) || year < 1979 || year > 2026) throw new Error(`Row ${index}: unsupported year ${year}`);
   if (!CATEGORIES.has(row.category)) throw new Error(`Row ${index}: category must be men or women`);
   if (!Number.isSafeInteger(place) || place < 1 || place > 100000) throw new Error(`Row ${index}: invalid placing`);
   if (!/^[0-9]{1,3}:[0-5][0-9]$/.test(row.finish_time_text)) throw new Error(`Row ${index}: expected mm:ss`);
@@ -117,17 +122,31 @@ async function main() {
   const grouped = rows.reduce((acc, row) => { (acc[row.year] ??= []).push(row); return acc; }, {});
   const newRows = [];
   let unchanged = 0;
+  let alreadyInArchive = 0;
   const conflicts = [];
   for (const [year, batch] of Object.entries(grouped)) {
-    const table = TABLES[year];
+    const table = tableForYear(Number(year));
     // Read ONLY the ranking slots supplied, in a single bounded query per year.
     const categories = [...new Set(batch.map(row => row.category))];
     const places = [...new Set(batch.map(row => row.overall_place))];
     const search = `?select=year,category,overall_place,name,club,class_name,finish_time_text,finish_time_seconds&category=in.(${categories.join(",")})&overall_place=in.(${places.join(",")})&limit=1000`;
     const existing = await request({ base, token: readToken, table, search });
     const lookup = new Map(existing.map(row => [key(row), row]));
+    let archiveKeys = new Set();
+    if (Number(year) <= 2024) {
+      const archive = await request({
+        base, token: readToken, table: "result_search",
+        search: `?select=year,name,finish_time_seconds&year=eq.${year}&limit=1000`,
+      });
+      if (archive.length === 1000) throw new Error(`Archive for ${year} is too large to safely check for duplicates`);
+      archiveKeys = new Set(archive.map(row => `${row.name.trim().toLocaleLowerCase("nb-NO")}/${row.finish_time_seconds}`));
+    }
     for (const row of batch) {
       const stored = lookup.get(key(row));
+      if (!stored && archiveKeys.has(`${row.name.toLocaleLowerCase("nb-NO")}/${row.finish_time_seconds}`)) {
+        alreadyInArchive++;
+        continue;
+      }
       if (!stored) newRows.push(row);
       else if (equivalent(row, stored)) unchanged++;
       else conflicts.push({ ranking: key(row), incoming: row, stored });
@@ -136,7 +155,7 @@ async function main() {
 
   console.log(`\nStoltzen verified-results import — ${options.apply ? "APPLY" : "DRY RUN"}`);
   console.log(`Input: ${options.input}`);
-  console.log(`Reviewed: ${rows.length}; existing: ${unchanged}; new: ${newRows.length}; conflicts: ${conflicts.length}`);
+  console.log(`Reviewed: ${rows.length}; existing: ${unchanged}; archive duplicates: ${alreadyInArchive}; new: ${newRows.length}; conflicts: ${conflicts.length}`);
   for (const row of newRows) console.log(`  NEW  ${key(row)}  ${row.name}  ${row.finish_time_text}`);
   for (const conflict of conflicts) console.error(`  CONFLICT ${conflict.ranking}: incoming ${conflict.incoming.name} ${conflict.incoming.finish_time_text}; stored ${conflict.stored.name} ${conflict.stored.finish_time_text}`);
   if (conflicts.length) throw new Error("Conflicts require manual review. No database changes were made.");
@@ -149,7 +168,7 @@ async function main() {
     const batch = newRows.filter(row => row.year === Number(year));
     if (!batch.length) continue;
     // Do not update existing results. A new conflict after the preview will cause an error.
-    const inserted = await request({ base, token: secret, table: TABLES[year], method: "POST", body: batch });
+    const inserted = await request({ base, token: secret, table: tableForYear(Number(year)), method: "POST", body: batch });
     console.log(`Imported ${inserted.length} new ${year} rows.`);
   }
   console.log("Import finished. Review /resultater in the browser.");
