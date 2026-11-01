@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RunnerProgressChart from "@/components/results/RunnerProgressChart";
 import type { Locale } from "@/lib/i18n";
 import type { RunnerProfileData, RunnerProfileResult } from "@/lib/result-profile";
 
@@ -172,7 +173,9 @@ export default function RunnerProfile({
               </p>
             </div>
 
-            <div className="border-t border-black/15">
+            <div className="min-w-0">
+              <RunnerProgressChart results={profile.results} personalBestSeconds={profile.personalBestSeconds} locale={locale} />
+              <div className="mt-8 border-t border-black/15">
               {profile.results.map((result) => (
                 <div
                   key={result.resultId}
@@ -209,6 +212,7 @@ export default function RunnerProfile({
                     : "Ingen årsresultater er importert for denne profilen ennå."}
                 </div>
               )}
+              </div>
             </div>
           </div>
         </div>
