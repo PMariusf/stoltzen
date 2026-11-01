@@ -33,6 +33,16 @@ type FilterOptionRow = {
   club_original: string | null;
 };
 
+const PAGE_SIZE = 50;
+type SortMode = "newest" | "fastest" | "name" | "place";
+
+const sortOrders: Record<SortMode, string> = {
+  newest: "year.desc,finish_time_seconds.asc.nullslast,name.asc",
+  fastest: "finish_time_seconds.asc.nullslast,year.desc,name.asc",
+  name: "name.asc,year.desc",
+  place: "place_rank.asc.nullslast,year.desc,finish_time_seconds.asc.nullslast",
+};
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
@@ -77,6 +87,8 @@ export default function ResultsExplorer({
   const [className, setClassName] = useState("all");
   const [club, setClub] = useState("all");
   const [rows, setRows] = useState<ResultSearchRow[]>([]);
+  const [page, setPage] = useState(0);
+  const [sort, setSort] = useState<SortMode>("newest");
   const [years, setYears] = useState<number[]>([]);
   const [filterRows, setFilterRows] = useState<FilterOptionRow[]>([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -190,8 +202,9 @@ export default function ResultsExplorer({
         const params = new URLSearchParams({
           select:
             "result_id,runner_id,legacy_id,year,bib,class_name,club_original,place_rank,finish_time_text,finish_time_seconds,name,gender_class,personal_best_text,personal_best_year,participation_count",
-          order: "year.desc,finish_time_seconds.asc.nullslast,name.asc",
-          limit: "100",
+          order: sortOrders[sort],
+          limit: String(PAGE_SIZE),
+          offset: String(page * PAGE_SIZE),
         });
 
         if (selectedYear !== "all") {
@@ -258,7 +271,7 @@ export default function ResultsExplorer({
       window.clearTimeout(timer);
       controller.abort();
     };
-  }, [query, selectedYear, className, club, en]);
+  }, [query, selectedYear, className, club, en, page, sort]);
 
   const selectedYearLabel =
     selectedYear === "all"
@@ -285,14 +298,14 @@ export default function ResultsExplorer({
         </span>
       </div>
 
-      <div className="grid gap-3 lg:grid-cols-[1.6fr_0.7fr_0.8fr_0.8fr_auto]">
+      <div className="grid gap-3 lg:grid-cols-[1.4fr_0.65fr_0.8fr_0.8fr_0.8fr_auto]">
         <label className="block">
           <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
             {en ? "Name or bib" : "Navn eller startnummer"}
           </span>
           <input
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => { setPage(0); setQuery(event.target.value); }}
             placeholder={en ? "Search runner..." : "Søk etter løper..."}
             className="min-h-13 w-full border border-white/15 bg-black/20 px-4 text-sm text-white outline-none transition placeholder:text-white/25 focus:border-white/45"
           />
@@ -307,6 +320,7 @@ export default function ResultsExplorer({
               value={year}
               onChange={(event) => {
                 setFilterLoading(true);
+                setPage(0);
                 setYear(event.target.value);
                 setClassName("all");
                 setClub("all");
@@ -329,7 +343,7 @@ export default function ResultsExplorer({
           </span>
           <select
             value={className}
-            onChange={(event) => setClassName(event.target.value)}
+            onChange={(event) => { setPage(0); setClassName(event.target.value); }}
             disabled={filterLoading}
             className="min-h-13 w-full border border-white/15 bg-[#0b0b0b] px-4 text-sm text-white outline-none focus:border-white/45 disabled:opacity-50"
           >
@@ -348,7 +362,7 @@ export default function ResultsExplorer({
           </span>
           <select
             value={club}
-            onChange={(event) => setClub(event.target.value)}
+            onChange={(event) => { setPage(0); setClub(event.target.value); }}
             disabled={filterLoading}
             className="min-h-13 w-full border border-white/15 bg-[#0b0b0b] px-4 text-sm text-white outline-none focus:border-white/45 disabled:opacity-50"
           >
@@ -361,10 +375,27 @@ export default function ResultsExplorer({
           </select>
         </label>
 
+        <label className="block">
+          <span className="mb-2 block text-[10px] font-black uppercase tracking-[0.2em] text-white/35">
+            {en ? "Sort by" : "Sorter etter"}
+          </span>
+          <select
+            value={sort}
+            onChange={(event) => { setPage(0); setSort(event.target.value as SortMode); }}
+            className="min-h-13 w-full border border-white/15 bg-[#0b0b0b] px-4 text-sm text-white outline-none focus:border-white/45"
+          >
+            <option value="newest">{en ? "Newest year" : "Nyeste år"}</option>
+            <option value="fastest">{en ? "Fastest time" : "Raskeste tid"}</option>
+            <option value="name">{en ? "Name A–Z" : "Navn A–Å"}</option>
+            <option value="place">{en ? "Best placing" : "Beste plassering"}</option>
+          </select>
+        </label>
         <div className="flex items-end">
           <button
             type="button"
             onClick={() => {
+              setPage(0);
+              setSort("newest");
               setQuery("");
               setClassName("all");
               setClub("all");
@@ -500,13 +531,24 @@ export default function ResultsExplorer({
               </table>
             </div>
 
-            {totalCount > rows.length && (
-              <p className="mt-4 text-xs text-white/30">
+            <nav aria-label={en ? "Results pages" : "Resultatsider"} className="mt-5 flex flex-wrap items-center justify-between gap-4">
+              <p className="text-xs text-white/45" aria-live="polite">
                 {en
-                  ? `Showing the first ${rows.length} of ${totalCount} matches.`
-                  : `Viser de første ${rows.length} av ${totalCount} treff.`}
+                  ? `Showing ${page * PAGE_SIZE + 1}–${page * PAGE_SIZE + rows.length} of ${totalCount} matches`
+                  : `Viser ${page * PAGE_SIZE + 1}–${page * PAGE_SIZE + rows.length} av ${totalCount} treff`}
               </p>
-            )}
+              <div className="flex items-center gap-3">
+                <button type="button" disabled={page === 0} onClick={() => setPage((value) => Math.max(0, value - 1))} className="min-h-11 border border-white/20 px-4 text-xs font-bold disabled:cursor-not-allowed disabled:opacity-30">
+                  {en ? "Previous" : "Forrige"}
+                </button>
+                <span className="text-xs text-white/55">
+                  {en ? "Page" : "Side"} {page + 1} / {Math.max(1, Math.ceil(totalCount / PAGE_SIZE))}
+                </span>
+                <button type="button" disabled={(page + 1) * PAGE_SIZE >= totalCount} onClick={() => setPage((value) => value + 1)} className="min-h-11 border border-white/20 px-4 text-xs font-bold disabled:cursor-not-allowed disabled:opacity-30">
+                  {en ? "Next" : "Neste"}
+                </button>
+              </div>
+            </nav>
           </>
         )}
       </div>
