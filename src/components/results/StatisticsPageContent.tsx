@@ -17,8 +17,8 @@ export default async function StatisticsPageContent({ locale = "no" }: { locale?
   const maxYearCount = Math.max(1, ...years.map((year) => year.count));
 
   return (
-    <main className="bg-[#090909] text-white">
-      <section className="border-b border-white/10 bg-[radial-gradient(circle_at_80%_20%,rgba(255,145,0,0.13),transparent_35%)]">
+    <main className="statistics-dark-surface bg-[#090909] text-white">
+      <section className="statistics-dark-panel border-b border-white/10 bg-[radial-gradient(circle_at_80%_20%,rgba(255,145,0,0.13),transparent_35%)]">
         <div className="mx-auto max-w-7xl px-6 pb-20 pt-36 md:px-10 md:pt-44">
           <p className="section-kicker">{en ? "Stoltzen archive" : "Stoltzen-arkivet"}</p>
           <h1 className="mt-5 text-[clamp(3.5rem,8vw,7.5rem)] font-black uppercase leading-[0.88] tracking-[-0.07em]">
@@ -35,7 +35,7 @@ export default async function StatisticsPageContent({ locale = "no" }: { locale?
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:px-10">
+      <section className="statistics-dark-panel mx-auto max-w-7xl px-6 py-14 md:px-10">
         <div className="grid gap-3 sm:grid-cols-3">
           {[
             { label: en ? "Imported results" : "Importerte resultater", number: stats.resultCount },
@@ -78,7 +78,7 @@ export default async function StatisticsPageContent({ locale = "no" }: { locale?
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-14 px-6 py-20 md:px-10 lg:grid-cols-2">
+      <section className="statistics-dark-panel mx-auto grid max-w-7xl gap-14 px-6 py-20 md:px-10 lg:grid-cols-2">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">{en ? "Imported results" : "Importerte resultater"}</p>
           <h2 className="mt-3 text-3xl font-black uppercase">{en ? "10 fastest finish times" : "10 raskeste sluttider"}</h2>
@@ -119,7 +119,7 @@ export default async function StatisticsPageContent({ locale = "no" }: { locale?
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-[#0c0c0c]">
+      <section className="statistics-dark-panel border-t border-white/10 bg-[#0c0c0c]">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">{en ? "Class breakdown" : "Klassefordeling"}</p>
           <h2 className="mt-3 text-3xl font-black uppercase">{en ? "Times by class" : "Tider per klasse"}</h2>
@@ -148,7 +148,7 @@ export default async function StatisticsPageContent({ locale = "no" }: { locale?
         </div>
       </section>
 
-      <section className="bg-[#151515]">
+      <section className="statistics-dark-panel bg-[#151515]">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10">
           <h2 className="text-3xl font-black uppercase">{en ? "Results by year" : "Resultater per år"}</h2>
           <p className="mt-3 text-sm text-white/45">{en ? "Number of entries imported for each race year." : "Antall resultater som er importert for hvert løpsår."}</p>
