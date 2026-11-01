@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ResultsExplorer from "@/components/results/ResultsExplorer";
+import { featured2026, featured2026Sources } from "@/data/featured-results-2026";
 
 export const metadata: Metadata = {
   title: "Resultater 2026",
@@ -25,6 +26,39 @@ export default function Results2026Page() {
           <Link href="/resultater" className="text-link mt-8 inline-flex">
             ← Alle resultater
           </Link>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 bg-[#121212]">
+        <div className="mx-auto max-w-7xl px-6 py-14 md:px-10">
+          <p className="section-kicker">Bekreftede resultater 2026</p>
+          <h2 className="mt-4 text-3xl font-black uppercase sm:text-4xl">Pallplasseringer</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-white/55">Et utvalg bekreftede resultater fra 2026. Disse vises separat inntil riktige profil-ID-er kan kobles til arkivet.</p>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            {([
+              { title: "Menn", entries: featured2026.men },
+              { title: "Kvinner", entries: featured2026.women },
+            ]).map(({title, entries}) => (
+              <div key={title} className="border border-white/15 p-5 sm:p-7">
+                <h3 className="text-xl font-black uppercase">{title}</h3>
+                <ol className="mt-5 divide-y divide-white/10">
+                  {entries.map((entry) => (
+                    <li key={entry.place} className="flex items-center gap-3 py-4">
+                      <span className="w-7 text-lg font-black text-[#f5a443]">{entry.place}</span>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-bold">{entry.name}</p>
+                        {entry.club && <p className="text-xs text-white/45">{entry.club}</p>}
+                      </div>
+                      <strong className="text-xl tabular-nums">{entry.time}</strong>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-white/60">
+            Kilder: <a className="underline underline-offset-4 hover:text-white" href={featured2026Sources.official} target="_blank" rel="noopener noreferrer">Stoltzen.no</a> · <a className="underline underline-offset-4 hover:text-white" href={featured2026Sources.report} target="_blank" rel="noopener noreferrer">Kondis</a>
+          </p>
         </div>
       </section>
 
