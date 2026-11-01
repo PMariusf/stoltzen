@@ -458,6 +458,37 @@ html[data-theme="light"] .always-dark-surface .text-link:hover {
   color: #ffffff !important;
 }
 
+/* Statistics intentionally alternates dark data panels with a light records
+   panel. Keep the dark panels dark (and their copy readable) in both themes. */
+html[data-theme="light"] .statistics-dark-surface {
+  background-color: #090909 !important;
+}
+html[data-theme="light"] .statistics-dark-panel {
+  background-color: #0d0d0d !important;
+  color: #f5f5f2 !important;
+}
+html[data-theme="light"] .statistics-dark-panel[class*="bg-\\[\\#151515\\]"] {
+  background-color: #151515 !important;
+}
+html[data-theme="light"] .statistics-dark-panel .section-kicker {
+  color: #d0d0d0 !important;
+}
+html[data-theme="light"] .statistics-dark-panel [class*="text-white/"] {
+  color: #cecece !important;
+}
+html[data-theme="light"] .statistics-dark-panel .text-white {
+  color: #f5f5f2 !important;
+}
+html[data-theme="light"] .statistics-dark-panel [class*="border-white/"] {
+  border-color: rgba(255, 255, 255, 0.23) !important;
+}
+html[data-theme="light"] .statistics-dark-panel [class*="bg-white/"] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+html[data-theme="light"] .statistics-dark-panel :where(a, button):focus-visible {
+  outline-color: #f8b453;
+}
+
 /* Accessible keyboard skip link and prominent focus indicators. */
 .skip-to-content {
   position: fixed;
