@@ -536,7 +536,7 @@ html[data-theme="light"] body main .course-map-panel button[aria-pressed="true"]
 html[data-theme="light"] body main .course-map-panel button[aria-pressed="true"] span {
   color: #111827 !important;
 }
-html[data-theme="light"] body main .course-map-panel button.bg-\\[\\#fbbf24\\] {
+html[data-theme="light"] body main .course-map-panel button[class*="bg-[#fbbf24]"] {
   color: #111827 !important;
 }
 
