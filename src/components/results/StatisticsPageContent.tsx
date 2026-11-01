@@ -119,6 +119,35 @@ export default async function StatisticsPageContent({ locale = "no" }: { locale?
         </div>
       </section>
 
+      <section className="border-t border-white/10 bg-[#0c0c0c]">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-10">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">{en ? "Class breakdown" : "Klassefordeling"}</p>
+          <h2 className="mt-3 text-3xl font-black uppercase">{en ? "Times by class" : "Tider per klasse"}</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-white/50">
+            {en ? "Fastest imported result in each available class. These are not official class records; age-group classes are not available in the current import." : "Raskeste importerte resultat i hver tilgjengelige klasse. Dette er ikke offisielle klasserekorder; aldersklasser finnes ikke i den nåværende importen."}
+          </p>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {stats.classes.map((entry) => (
+              <article key={entry.name} className="border border-white/15 bg-white/[0.025] p-6">
+                <h3 className="text-xl font-black uppercase">{entry.name}</h3>
+                <p className="mt-2 text-sm text-white/50">{entry.count} {en ? "imported results" : "importerte resultater"}</p>
+                {entry.fastest ? (
+                  <div className="mt-5 border-t border-white/10 pt-5">
+                    <p className="text-xs font-bold uppercase tracking-wider text-white/45">{en ? "Fastest imported time" : "Raskeste importerte tid"}</p>
+                    <p className="mt-2 text-4xl font-black">{time(entry.fastest.finish_time_text, entry.fastest.finish_time_seconds)}</p>
+                    <Link href={linkPrefix + entry.fastest.legacy_id} className="mt-2 inline-block text-sm text-white/70 underline-offset-4 hover:underline">
+                      {entry.fastest.name} · {entry.fastest.year}
+                    </Link>
+                  </div>
+                ) : (
+                  <p className="mt-5 text-sm text-white/50">{en ? "No valid time" : "Ingen gyldig tid"}</p>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#151515]">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-10">
           <h2 className="text-3xl font-black uppercase">{en ? "Results by year" : "Resultater per år"}</h2>
